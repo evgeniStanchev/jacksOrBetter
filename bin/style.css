@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+	
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+}
+
+#GameViewport {
+    transform-origin: 0 0;
+}

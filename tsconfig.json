@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "sourceMap": true,
+    "declaration": false,
+    "outFile": "./bin/Game.min.js",
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "noImplicitThis": false,
+    "alwaysStrict": false,
+    "noImplicitReturns": false,
+    "allowUnreachableCode": true,
+    "experimentalDecorators": true
+  },
+  "include": [
+    "./src/**/*.ts",
+    "./types/**/*.ts"
+  ]
+}
