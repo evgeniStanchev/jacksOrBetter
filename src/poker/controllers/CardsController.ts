@@ -7,10 +7,12 @@ namespace poker.controllers {
     export class CardsController extends Pluck.ViewController {
         constructor() {
             super(new CardsView());
+            // for (const card of this.view.cards) {
+            //     card.on("click", this.onCardClick, this);
+            // }
 
-            for (const card of this.view.cards) {
-                card.on("click", this.onCardClick, this);
-            }
+            // const mModel = this.gameModel;
+            // console.log(mModel);
         }
 
         getInterests(): string[] {
@@ -20,8 +22,6 @@ namespace poker.controllers {
         handleNotification(notification: Pluck.Notification): void {
             switch (notification.name) {
                 case Notifications.DEAL_RECEIVED: {
-                    const heldCardsIndexes : number[] = this.view.heldCards();
-
                     this.view.revealCards();
                     break;
                 }
@@ -33,7 +33,7 @@ namespace poker.controllers {
         }
 
         get gameModel(): GameModel {
-            return Pluck.ViewController.controllerMap["GameController"].model;
+            return (Pluck.ViewController.root as any)._model;
         }
 
         private onCardClick(e: PIXI.interaction.InteractionEvent) {

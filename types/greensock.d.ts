@@ -7,8 +7,8 @@
 // Version 1.15.1 (TypeScript 1.4)
 
 interface IDispatcher {
-    addEventListener(type:string, callback:Function, scope?:Object, useParam?:boolean, priority?:number):void;
-    removeEventListener(type:string, callback:Function):void;
+    addEventListener(type: string, callback: Function, scope?: Object, useParam?: boolean, priority?: number): void;
+    removeEventListener(type: string, callback: Function): void;
 }
 
 declare type Tween = TweenLite | TweenMax;
@@ -21,7 +21,7 @@ declare type TweenConfig = {
     repeatDelay?: number;
     yoyo?: boolean;
     paused?: boolean;
-    overwrite?: string|number;
+    overwrite?: string | number;
     onComplete?: Function;
     immediateRender?: boolean;
     onCompleteParams?: any[];
@@ -43,10 +43,10 @@ declare type TweenConfig = {
     onOverwrite?: Function;
     autoCSS?: boolean;
     callbackScope?: Object;
-}
-    
+};
+
 //com.greensock.core
-declare class Animation {
+declare class GSAnimation {
     static ticker: IDispatcher;
     data: any;
     timeline: SimpleTimeline;
@@ -123,7 +123,13 @@ declare class TweenLite extends Animation {
 declare class TweenMax extends TweenLite {
     constructor(target: Object, duration: number, vars: Object);
 
-    static delayedCall(delay: number, callback: Function, params?: any[], scope?: Object, useFrames?: boolean): TweenMax;
+    static delayedCall(
+        delay: number,
+        callback: Function,
+        params?: any[],
+        scope?: Object,
+        useFrames?: boolean
+    ): TweenMax;
     static from(target: Object, duration: number, vars: Object): TweenMax;
     static fromTo(target: Object, duration: number, fromVars: Object, toVars: Object): TweenMax;
     static getAllTweens(includeTimelines?: boolean): Tween[];
@@ -140,10 +146,35 @@ declare class TweenMax extends TweenLite {
     repeatDelay(value: number): TweenMax;
     static resumeAll(tweens?: boolean, delayedCalls?: boolean, timelines?: boolean): void;
     static set(target: Object, vars: Object): TweenMax;
-    static staggerFrom(targets: any, duration: number, vars: Object, stagger: number, onCompleteAll?: Function, onCompleteAllParams?: any[], onCompleteAllScope?: any): any[];
-    static staggerFromTo(targets: any, duration: number, fromVars: Object, toVars: Object, stagger: number, onCompleteAll?: Function, onCompleteAllParams?: any[], onCompleteAllScope?: any): any[];
-    static staggerTo(targets: any, duration: number, vars: Object, stagger: number, onCompleteAll?: Function, onCompleteAllParams?: any[], onCompleteAllScope?: any): any[];
-    static to(target:Object, duration:number, vars:TweenConfig):TweenMax;
+    static staggerFrom(
+        targets: any,
+        duration: number,
+        vars: Object,
+        stagger: number,
+        onCompleteAll?: Function,
+        onCompleteAllParams?: any[],
+        onCompleteAllScope?: any
+    ): any[];
+    static staggerFromTo(
+        targets: any,
+        duration: number,
+        fromVars: Object,
+        toVars: Object,
+        stagger: number,
+        onCompleteAll?: Function,
+        onCompleteAllParams?: any[],
+        onCompleteAllScope?: any
+    ): any[];
+    static staggerTo(
+        targets: any,
+        duration: number,
+        vars: Object,
+        stagger: number,
+        onCompleteAll?: Function,
+        onCompleteAllParams?: any[],
+        onCompleteAllScope?: any
+    ): any[];
+    static to(target: Object, duration: number, vars: TweenConfig): TweenMax;
     updateTo(vars: Object, resetDuration?: boolean): TweenMax;
     yoyo(): boolean;
     yoyo(value?: boolean): TweenMax;
@@ -161,7 +192,12 @@ declare class TimelineLite extends SimpleTimeline {
     static exportRoot(vars?: Object, omitDelayedCalls?: boolean): TimelineLite;
     from(target: Object, duration: number, vars: Object, position?: any): TimelineLite;
     fromTo(target: Object, duration: number, fromVars: Object, toVars: Object, position?: any): TimelineLite;
-    getChildren(nested?: boolean, tweens?: boolean, timelines?: boolean, ignoreBeforeTime?: number): (Tween | Timeline)[];
+    getChildren(
+        nested?: boolean,
+        tweens?: boolean,
+        timelines?: boolean,
+        ignoreBeforeTime?: number
+    ): (Tween | Timeline)[];
     getLabelTime(label: string): number;
     getTweensOf(target: Object, nested?: boolean): Tween[];
     recent(): Animation;
@@ -169,9 +205,37 @@ declare class TimelineLite extends SimpleTimeline {
     removeLabel(label: string): any;
     set(target: Object, vars: Object, position?: any): TimelineLite;
     shiftChildren(amount: number, adjustLabels?: boolean, ignoreBeforeTime?: number): TimelineLite;
-    staggerFrom(targets: any, duration: number, vars: Object, stagger?: number, position?: any, onCompleteAll?: Function, onCompleteAllParams?: any[], onCompleteScope?: any): TimelineLite;
-    staggerFromTo(targets: any, duration: number, fromVars: Object, toVars: Object, stagger?: number, position?: any, onCompleteAll?: Function, onCompleteAllParams?: any[], onCompleteAllScope?: any): TimelineLite;
-    staggerTo(targets: any, duration: number, vars: Object, stagger: number, position?: any, onCompleteAll?: Function, onCompleteAllParams?: any[], onCompleteAllScope?: any): TimelineLite;
+    staggerFrom(
+        targets: any,
+        duration: number,
+        vars: Object,
+        stagger?: number,
+        position?: any,
+        onCompleteAll?: Function,
+        onCompleteAllParams?: any[],
+        onCompleteScope?: any
+    ): TimelineLite;
+    staggerFromTo(
+        targets: any,
+        duration: number,
+        fromVars: Object,
+        toVars: Object,
+        stagger?: number,
+        position?: any,
+        onCompleteAll?: Function,
+        onCompleteAllParams?: any[],
+        onCompleteAllScope?: any
+    ): TimelineLite;
+    staggerTo(
+        targets: any,
+        duration: number,
+        vars: Object,
+        stagger: number,
+        position?: any,
+        onCompleteAll?: Function,
+        onCompleteAllParams?: any[],
+        onCompleteAllScope?: any
+    ): TimelineLite;
     to(target: Object, duration: number, vars: Object, position?: any): TimelineLite;
     usesFrames(): boolean;
 }
@@ -199,7 +263,7 @@ declare class TimelineMax extends TimelineLite {
 
 //com.greensock.easing
 declare class Ease {
-    constructor(func:Function, extraParams:any[], type:number, power:number);
+    constructor(func: Function, extraParams: any[], type: number, power: number);
     public getRatio(p: number): number;
 }
 
@@ -212,7 +276,6 @@ declare class Back extends Ease {
     public static easeInOut: Back;
     public static easeOut: Back;
     public config(overshoot: number): Elastic;
-
 }
 declare class Bounce extends Ease {
     public static easeIn: Bounce;
@@ -290,9 +353,9 @@ declare type RoughEaseConfig = {
     points?: number;
     randomize?: boolean;
     strength?: number;
-    taper?: string; /* one of "in" | "out" | "both" | "none" */
+    taper?: string /* one of "in" | "out" | "both" | "none" */;
     template?: Ease;
-}
+};
 
 declare class RoughEase extends Ease {
     public static ease: RoughEase;
@@ -302,41 +365,34 @@ declare class RoughEase extends Ease {
 
 //com.greensock.plugins
 interface BezierPlugin extends TweenPlugin {
-    bezierThrough(values:any[], curviness?:number, quadratic?:boolean, correlate?:string, prepend?:Object, calcDifs?:boolean):Object;
-    cubicToQuadratic(a:number, b:number, c:number, d:number):any[];
-    quadraticToCubic(a:number, b:number, c:number):Object;
+    bezierThrough(
+        values: any[],
+        curviness?: number,
+        quadratic?: boolean,
+        correlate?: string,
+        prepend?: Object,
+        calcDifs?: boolean
+    ): Object;
+    cubicToQuadratic(a: number, b: number, c: number, d: number): any[];
+    quadraticToCubic(a: number, b: number, c: number): Object;
 }
-interface ColorPropsPlugin extends TweenPlugin {
-
-}
-interface CSSPlugin extends TweenPlugin {
-
-}
+interface ColorPropsPlugin extends TweenPlugin {}
+interface CSSPlugin extends TweenPlugin {}
 interface CSSRulePlugin extends TweenPlugin {
-    getRule(selector:string):Object;
+    getRule(selector: string): Object;
 }
-interface EaselPlugin extends TweenPlugin {
-
-}
-interface RaphaelPlugin extends TweenPlugin {
-
-}
-interface RoundPropsPlugin extends TweenPlugin {
-
-}
-interface ScrollToPlugin extends TweenPlugin {
-
-}
+interface EaselPlugin extends TweenPlugin {}
+interface RaphaelPlugin extends TweenPlugin {}
+interface RoundPropsPlugin extends TweenPlugin {}
+interface ScrollToPlugin extends TweenPlugin {}
 interface TweenPlugin {
-    activate(plugins:any[]):boolean;
+    activate(plugins: any[]): boolean;
 }
 interface CustomEase {
-    create(id:string, data:string):CustomEase;
-    get(id:string):CustomEase;
-    getRatio(progress:number):CustomEase;
-
+    create(id: string, data: string): CustomEase;
+    get(id: string): CustomEase;
+    getRatio(progress: number): CustomEase;
 }
-
 
 //com.greensock.easing
 declare var Power0: typeof Linear;
@@ -345,15 +401,15 @@ declare var Power2: typeof Cubic;
 declare var Power3: typeof Quart;
 declare var Power4: typeof Quint;
 declare var Strong: typeof Quint;
-declare var CustomEase:CustomEase;
+declare var CustomEase: CustomEase;
 
 //com.greensock.plugins
-declare var BezierPlugin:BezierPlugin;
-declare var ColorPropsPlugin:ColorPropsPlugin;
-declare var CSSPlugin:CSSPlugin;
-declare var CSSRulePlugin:CSSRulePlugin;
-declare var EaselPlugin:EaselPlugin;
-declare var RaphaelPlugin:RaphaelPlugin;
-declare var RoundPropsPlugin:RoundPropsPlugin;
-declare var ScrollToPlugin:ScrollToPlugin;
-declare var TweenPlugin:TweenPlugin;
+declare var BezierPlugin: BezierPlugin;
+declare var ColorPropsPlugin: ColorPropsPlugin;
+declare var CSSPlugin: CSSPlugin;
+declare var CSSRulePlugin: CSSRulePlugin;
+declare var EaselPlugin: EaselPlugin;
+declare var RaphaelPlugin: RaphaelPlugin;
+declare var RoundPropsPlugin: RoundPropsPlugin;
+declare var ScrollToPlugin: ScrollToPlugin;
+declare var TweenPlugin: TweenPlugin;

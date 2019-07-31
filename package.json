@@ -1,0 +1,26 @@
+{
+  "name": "jacksorbetter",
+  "version": "1.0.0",
+  "description": "'Jacks or better' is kinda poker game. This app is made with pixiJS, greensock, typescript(using namespaces), etc.",
+  "main": "index.js",
+  "bin": {
+    "jacksorbetter": "Game.min.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^2.9.2"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evgeniStanchev/jacksOrBetter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evgeniStanchev/jacksOrBetter/issues"
+  },
+  "homepage": "https://github.com/evgeniStanchev/jacksOrBetter#readme"
+}

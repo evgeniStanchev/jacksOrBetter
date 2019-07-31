@@ -1,7 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7fcd5382-c9a4-484a-8201-4ff5ade58b45" name="Default Changelist" comment="" />
+    <list default="true" id="7fcd5382-c9a4-484a-8201-4ff5ade58b45" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/commonSounds/cardBlink.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/commonSounds/cardSwap.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/commonSounds/collectButton.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/commonSounds/creditAnimation.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/commonSounds/gambleCardClick.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/commonSounds/gambleLost.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/commonSounds/gambleOpen.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/commonSounds/gambleWon.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/commonSounds/holdCard.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/commonSounds/mainButton.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/commonSounds/takeWin.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/commonSounds/volume.mp3" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/gamble/gambleRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/gamble/gambleWin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/mainCards/aceImage.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/mainCards/cardBackBlack.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/mainCards/cardBackRed.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/mainCards/card_clean.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/mainCards/clubs.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/mainCards/diamonds.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/mainCards/hearts.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/mainCards/held.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/mainCards/jackImage.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/mainCards/kingImage.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/mainCards/queenImage.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/mainCards/spades.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/mainCards/win_en.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/bin/assets/sound.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Game.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Game.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/Game.min.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/bin/Game.min.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bin/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/bin/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/poker/Main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/poker/Main.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/poker/controllers/CardsController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/poker/controllers/CardsController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/poker/controllers/GameController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/poker/controllers/GameController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/poker/models/GameModel.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/poker/models/GameModel.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/poker/models/Resources.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/poker/models/Resources.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/poker/views/GameView.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/poker/views/GameView.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/poker/views/cards/CardsView.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/poker/views/cards/CardsView.ts" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -16,8 +58,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/Main.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="40" lean-forward="true" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+            <state relative-caret-position="272">
+              <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
                 <element signature="n#GameController#0;n#poker#0" expanded="true" />
@@ -29,8 +71,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/controllers/GameController.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+            <state relative-caret-position="527">
+              <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="n#GameView#0;n#controllers#0;n#poker#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -38,26 +84,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/views/GameView.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+            <state relative-caret-position="119">
+              <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/poker/controllers/CardsController.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="663">
+              <caret line="41" selection-start-line="41" selection-end-line="41" />
               <folding>
                 <element signature="n#CardsView#0;n#controllers#0;n#poker#0" expanded="true" />
               </folding>
@@ -69,25 +106,16 @@
         <entry file="file://$PROJECT_DIR$/src/poker/models/GameModel.ts">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
-              <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+              <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/poker/Notifications.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/poker/models/Resources.ts">
+        <entry file="file://$PROJECT_DIR$/bin/index.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
-              <caret line="22" column="41" selection-end-line="47" selection-end-column="1" />
+              <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
             </state>
           </provider>
         </entry>
@@ -95,17 +123,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/poker/views/cards/Card.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
+            <state relative-caret-position="578">
+              <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="29410">
+              <caret line="1743" column="77" selection-start-line="1743" selection-start-column="77" selection-end-line="1743" selection-end-column="77" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/poker/views/cards/CardsView.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
+            <state relative-caret-position="289">
+              <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/poker/models/Resources.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="20" column="64" selection-start-line="20" selection-start-column="64" selection-end-line="20" selection-end-column="64" />
             </state>
           </provider>
         </entry>
@@ -119,6 +165,15 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>backgroun</find>
+      <find>background</find>
+    </findStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -128,13 +183,15 @@
         <option value="$PROJECT_DIR$/src/poker/views/CardsView.ts" />
         <option value="$PROJECT_DIR$/src/poker/views/cards/HeldLabel.ts" />
         <option value="$PROJECT_DIR$/src/poker/views/cards/Card.ts" />
-        <option value="$PROJECT_DIR$/src/poker/views/cards/CardsView.ts" />
         <option value="$PROJECT_DIR$/src/poker/Notifications.ts" />
         <option value="$PROJECT_DIR$/src/poker/models/Resources.ts" />
+        <option value="$PROJECT_DIR$/src/poker/views/GameView.ts" />
+        <option value="$PROJECT_DIR$/bin/index.html" />
+        <option value="$PROJECT_DIR$/src/poker/controllers/GameController.ts" />
         <option value="$PROJECT_DIR$/src/poker/Main.ts" />
         <option value="$PROJECT_DIR$/src/poker/models/GameModel.ts" />
-        <option value="$PROJECT_DIR$/src/poker/controllers/GameController.ts" />
         <option value="$PROJECT_DIR$/src/poker/controllers/CardsController.ts" />
+        <option value="$PROJECT_DIR$/src/poker/views/cards/CardsView.ts" />
       </list>
     </option>
   </component>
@@ -144,6 +201,7 @@
     <option name="width" value="1440" />
     <option name="height" value="870" />
   </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -154,70 +212,69 @@
         <subPane>
           <expand>
             <path>
-              <item name="JacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JacksOrBetter" type="462c0819:PsiDirectoryNode" />
+              <item name="jacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jacksOrBetter" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="JacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JacksOrBetter" type="462c0819:PsiDirectoryNode" />
+              <item name="jacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jacksOrBetter" type="462c0819:PsiDirectoryNode" />
               <item name="bin" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="JacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JacksOrBetter" type="462c0819:PsiDirectoryNode" />
+              <item name="jacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jacksOrBetter" type="462c0819:PsiDirectoryNode" />
               <item name="bin" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="JacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JacksOrBetter" type="462c0819:PsiDirectoryNode" />
+              <item name="jacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jacksOrBetter" type="462c0819:PsiDirectoryNode" />
               <item name="bin" type="462c0819:PsiDirectoryNode" />
-              <item name="lib" type="462c0819:PsiDirectoryNode" />
-              <item name="pixi.js" type="620a8d5e:NestingTreeNode" />
+              <item name="Game.min.js" type="620a8d5e:NestingTreeNode" />
             </path>
             <path>
-              <item name="JacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JacksOrBetter" type="462c0819:PsiDirectoryNode" />
+              <item name="jacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jacksOrBetter" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="JacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JacksOrBetter" type="462c0819:PsiDirectoryNode" />
+              <item name="jacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jacksOrBetter" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="poker" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="JacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JacksOrBetter" type="462c0819:PsiDirectoryNode" />
+              <item name="jacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jacksOrBetter" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="poker" type="462c0819:PsiDirectoryNode" />
               <item name="controllers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="JacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JacksOrBetter" type="462c0819:PsiDirectoryNode" />
+              <item name="jacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jacksOrBetter" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="poker" type="462c0819:PsiDirectoryNode" />
               <item name="models" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="JacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JacksOrBetter" type="462c0819:PsiDirectoryNode" />
+              <item name="jacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jacksOrBetter" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="poker" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="JacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JacksOrBetter" type="462c0819:PsiDirectoryNode" />
+              <item name="jacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jacksOrBetter" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="poker" type="462c0819:PsiDirectoryNode" />
               <item name="views" type="462c0819:PsiDirectoryNode" />
               <item name="cards" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
-              <item name="JacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
-              <item name="JacksOrBetter" type="462c0819:PsiDirectoryNode" />
+              <item name="jacksOrBetter" type="b2602c69:ProjectViewProjectNode" />
+              <item name="jacksOrBetter" type="462c0819:PsiDirectoryNode" />
               <item name="types" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -227,20 +284,22 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/bin/lib" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/bin/assets" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="settings.typescriptcompiler" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2019.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="ts.external.directory.path" value="C:\Projects\jacksOrBetter\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Projects\jacksOrBetter\bin\assets" />
+      <recent name="C:\Projects\JacksOrBetter\bin\lib" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Projects\JacksOrBetter\src\poker\views\cards" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Projects\JacksOrBetter\bin\lib" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -278,11 +337,13 @@
       <workItem from="1564477318336" duration="965000" />
       <workItem from="1564484013532" duration="757000" />
       <workItem from="1564489382618" duration="4146000" />
+      <workItem from="1564569068409" duration="2521000" />
+      <workItem from="1564573440095" duration="1969000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5868000" />
+    <option name="totallyTimeSpent" value="10358000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
@@ -290,17 +351,18 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2918862" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info id="npm" order="3" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32981783" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.557047" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.56184083" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="TypeScript" order="9" weight="0.32981783" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32981783" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -344,48 +406,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tsconfig.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="24" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="29580">
-          <caret line="1753" column="20" selection-start-line="1753" selection-start-column="20" selection-end-line="1753" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/types/egt-library.d.ts">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/views/cards/HeldLabel.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/views/cards/HeldLabel.ts" />
     <entry file="file://$PROJECT_DIR$/src/poker/Notifications.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="5" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
+          <caret line="5" column="5" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/index.html">
+    <entry file="file://$PROJECT_DIR$/tsconfig.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="9" lean-forward="true" selection-start-line="16" selection-start-column="9" selection-end-line="16" selection-end-column="9" />
+        <state relative-caret-position="306">
+          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" lean-forward="true" selection-start-line="26" selection-end-line="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="http://localhost:63342/JacksOrBetter/bin/lib/egt-library.min.js">
+      <provider selected="true" editor-type-id="httpFileEditor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/Main.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="40" lean-forward="true" selection-start-line="7" selection-start-column="40" selection-end-line="7" selection-end-column="40" />
+        <state relative-caret-position="272">
+          <caret line="18" column="33" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
             <element signature="n#GameController#0;n#poker#0" expanded="true" />
@@ -393,55 +445,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/controllers/GameController.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="35" column="8" selection-start-line="35" selection-start-column="8" selection-end-line="35" selection-end-column="8" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#GameView#0;n#controllers#0;n#poker#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/views/GameView.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        <state relative-caret-position="119">
+          <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/views/cards/CardsView.ts">
+    <entry file="file://$PROJECT_DIR$/src/poker/controllers/CardsController.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="9" lean-forward="true" selection-start-line="21" selection-start-column="9" selection-end-line="21" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/views/cards/Card.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="9" lean-forward="true" selection-start-line="28" selection-start-column="9" selection-end-line="28" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/models/Resources.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="41" selection-end-line="47" selection-end-column="1" />
+        <state relative-caret-position="663">
+          <caret line="41" selection-start-line="41" selection-end-line="41" />
+          <folding>
+            <element signature="n#CardsView#0;n#controllers#0;n#poker#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/poker/models/GameModel.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
-          <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/controllers/GameController.ts">
+    <entry file="file://$PROJECT_DIR$/bin/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+        <state relative-caret-position="374">
+          <caret line="22" column="7" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="7" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/poker/controllers/CardsController.ts">
+    <entry file="file://$PROJECT_DIR$/src/poker/views/cards/Card.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="n#CardsView#0;n#controllers#0;n#poker#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="578">
+          <caret line="34" column="9" selection-start-line="34" selection-start-column="9" selection-end-line="34" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.dom.d.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="29410">
+          <caret line="1743" column="77" selection-start-line="1743" selection-start-column="77" selection-end-line="1743" selection-end-column="77" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/models/Resources.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="64" selection-start-line="20" selection-start-column="64" selection-end-line="20" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/poker/views/cards/CardsView.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" lean-forward="true" selection-start-line="17" selection-end-line="17" />
         </state>
       </provider>
     </entry>

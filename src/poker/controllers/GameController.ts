@@ -1,20 +1,33 @@
 ///<reference path="../views/GameView.ts"/>
 ///<reference path="../Notifications.ts"/>
+///<reference path="../models/GameModel.ts"/>
+///<reference path="../controllers/CardsController.ts"/>
 
 namespace poker.controllers {
     import GameView = poker.view.GameView;
     import Notifications = poker.Notifications;
+    import GameModel = poker.model.GameModel;
+    import CardsController = poker.controllers.CardsController;
 
     export class GameController extends Pluck.ViewController {
-        private readonly _app: PIXI.Application;
+        private _app: PIXI.Application;
+        private _cardsControler: CardsController;
 
         constructor() {
-            super(new GameView());
+            super(new GameView(), new GameModel());
+            this.init();
+           
+        }
+
+        private init(): void {
             this._app = new PIXI.Application({
-                height: window.innerHeight,
-                width: window.innerWidth,
+                width: 1280,
+                height: 720,
             });
             this._app.stage.addChild(this._view);
+            document.getElementById("display-port").appendChild(this._app.view);
+            this._cardsControler = new CardsController();
+            this._view.addChild(this._cardsControler.view);
         }
 
         getInterests(): string[] {
@@ -22,14 +35,16 @@ namespace poker.controllers {
         }
 
         handleNotification(note: Pluck.Notification) {
-            switch (note.name) {
-                case Notifications.RESOURCES_LOADED:
-                    this.addControllers();
-                    break;
+            switch (
+                note.name
+                // case Notifications.RESOURCES_LOADED:
+                //     this.addControllers();
+                //     break;
+            ) {
             }
         }
 
-        private addControllers(): void {
+        addControllers(): void {
             const cardsController = new CardsController();
             this.addChildViewController(cardsController);
         }

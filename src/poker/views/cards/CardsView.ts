@@ -1,7 +1,6 @@
 namespace poker.views.cards {
     export class CardsView extends PIXI.Container {
-        _cards: Card[];
-
+        private _cards: Card[];
         private _speed: number = 1;
 
         constructor() {

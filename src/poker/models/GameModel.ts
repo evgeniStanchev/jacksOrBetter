@@ -5,7 +5,7 @@ namespace poker.model {
             super()
         }
 
-        balance: number
+        balance: number  = 5000
         cards: number[]
     }
 
