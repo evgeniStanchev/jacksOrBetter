@@ -1,4 +1,4 @@
-namespace poker.model {
+namespace model {
     export class GameModel extends Pluck.Model {
 
         constructor() {

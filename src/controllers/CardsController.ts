@@ -1,8 +1,10 @@
-///<reference path="../views/cards/CardsView.ts"/>
-namespace poker.controllers {
-    import CardsView = poker.views.cards.CardsView;
-    import GameModel = poker.model.GameModel;
-    import Card = poker.views.cards.Card;
+///<reference path="../views/CardsView.ts"/>
+///<reference path="../Notifications.ts"/>
+namespace controllers {
+    import CardsView = views.CardsView;
+    import GameModel = model.GameModel;
+    import Card = views.Card;
+    import Notifications = poker.Notifications;
 
     export class CardsController extends Pluck.ViewController {
         constructor() {

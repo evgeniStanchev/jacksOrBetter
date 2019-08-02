@@ -1,4 +1,10 @@
-namespace poker.model {
+///<reference path="../Notifications.ts"/>
+
+
+namespace model {
+
+    import Notifications = poker.Notifications;
+
     export class Resources extends Pluck.Model {
         constructor() {
             super();

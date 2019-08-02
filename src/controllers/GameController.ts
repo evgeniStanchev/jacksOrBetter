@@ -1,22 +1,27 @@
 ///<reference path="../views/GameView.ts"/>
 ///<reference path="../Notifications.ts"/>
 ///<reference path="../models/GameModel.ts"/>
-///<reference path="../controllers/CardsController.ts"/>
+///<reference path="./CardsController.ts"/>
+///<reference path="./ButtonsController.ts"/>
 
-namespace poker.controllers {
-    import GameView = poker.view.GameView;
+namespace controllers {
+    import GameView = views.GameView;
     import Notifications = poker.Notifications;
-    import GameModel = poker.model.GameModel;
-    import CardsController = poker.controllers.CardsController;
+    import GameModel = model.GameModel;
+    import CardsController = controllers.CardsController;
+    import ButtonsController = controllers.ButtonsController;
 
     export class GameController extends Pluck.ViewController {
+        public static readonly WIDTH = 1280;
+        public static readonly HEIGHT = 720;
+
         private _app: PIXI.Application;
-        private _cardsControler: CardsController;
+        private _cardsController: CardsController;
+        private _buttonsController: ButtonsController;
 
         constructor() {
             super(new GameView(), new GameModel());
             this.init();
-           
         }
 
         private init(): void {
@@ -26,15 +31,13 @@ namespace poker.controllers {
             });
             this._app.stage.addChild(this._view);
             document.getElementById("display-port").appendChild(this._app.view);
-            this._cardsControler = new CardsController();
-            this._view.addChild(this._cardsControler.view);
         }
 
-        getInterests(): string[] {
+        public getInterests(): string[] {
             return [Notifications.RESOURCES_LOADED];
         }
 
-        handleNotification(note: Pluck.Notification) {
+        public handleNotification(note: Pluck.Notification) {
             switch (
                 note.name
                 // case Notifications.RESOURCES_LOADED:
@@ -44,9 +47,11 @@ namespace poker.controllers {
             }
         }
 
-        addControllers(): void {
-            const cardsController = new CardsController();
-            this.addChildViewController(cardsController);
+        public addControllers(): void {
+            this._cardsController = new CardsController();
+            this.addChildViewController(this._cardsController);
+            this._buttonsController = new ButtonsController();
+            this.addChildViewController(this._buttonsController);
         }
     }
 }

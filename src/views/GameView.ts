@@ -1,6 +1,6 @@
 ///<reference path="../Notifications.ts"/>
 
-namespace poker.view {
+namespace views {
     export class GameView extends PIXI.Container {
         constructor() {
             super();

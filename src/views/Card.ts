@@ -1,4 +1,4 @@
-namespace poker.views.cards {
+namespace views {
     export class Card extends PIXI.Sprite {
         private _heldLabel: PIXI.Sprite;
         private _winLabel: PIXI.Sprite;
@@ -9,6 +9,7 @@ namespace poker.views.cards {
         constructor() {
             super();
             this.init();
+            this.texture = this._backTexture;
         }
 
         private init() {
