@@ -1,7 +1,8 @@
 namespace poker {
     export class Notifications {
         static RESOURCES_LOADED = "resourcesLoaded";
-        static DRAW_RECEIVED = 'drawReceived'
-        static DEAL_RECEIVED = 'dealReceived'
+        static DRAW = 'draw'
+        static DEAL = 'deal'
+        static COLLECT = 'collect'
     }
 }

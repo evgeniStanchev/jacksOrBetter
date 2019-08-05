@@ -2,18 +2,16 @@ namespace views {
     export class BetButton extends PIXI.Sprite {
         public readonly _width = 87;
 
+        private _isMaxBet: boolean;
         private _actionLabel: PIXI.Text;
         private _isSelected: boolean;
+        private readonly _index: number;
 
         private readonly _inactiveTexture = PIXI.Texture.fromImage("../../bin/assets/button/betButtonInactive.png");
         private readonly _activeTexture = PIXI.Texture.fromImage("../../bin/assets/button/betButtonActive.png");
         private readonly _actionLabelFontSize = 15;
         private readonly _actionLabelY = 52;
-
-        private readonly _actionLabelDraw: string = "Draw";
-        private readonly _actionLabelDeal: string = "Deal";
-        private readonly _actionLabelCollect: string = "Collect";
-        private readonly _actionLabelMaxBet: string = "Max Bet";
+        private readonly _actionLabelText: string;
 
         private _betLabel: PIXI.Text;
         private readonly _betLabelFontSize = 12;
@@ -27,19 +25,37 @@ namespace views {
 
         private _isDown: boolean;
 
-        constructor(bet: number) {
+        constructor(bet: number, index: number, actionLabel: string) {
             super();
             this.texture = this._inactiveTexture;
-            this._isDown = false;
             this.buttonMode = true;
-            this.interactive = true;
-            this.on("pointerdown", this.onClick);
+            this.on("pointerdown", this.onPointerDown);
+            this.on("pointerup", this.onPointerUp);
+            this.on("pointerupoutside", this.onPointerUpOutside);
+            this._index = index;
             this._betPrice = bet;
+            this._isDown = false;
+            this._isMaxBet = false;
+            this._actionLabelText = actionLabel;
             this.setTexts();
         }
 
         public get isSelected(): boolean {
             return this._isSelected;
+        }
+
+        public set actionLabelText(text: string) {
+            this._actionLabel.text = text;
+            this.resetCoordinates();
+        }
+
+        public;
+        public get isMaxBet(): boolean {
+            return this._isMaxBet;
+        }
+
+        public set isMaxBet(isMaxBet: boolean) {
+            this._isMaxBet = isMaxBet;
         }
 
         public selectButton(): void {
@@ -50,21 +66,26 @@ namespace views {
         public deselectButton(): void {
             this._isSelected = false;
             this.texture = this._inactiveTexture;
+        }
+
+        private resetCoordinates(): void {
+            this._actionLabel.x = (this._width - this._actionLabel.width) / 2;
+            this._actionLabel.y = this._actionLabelY;
+        }
+
+        private onPointerUp(e: PIXI.interaction.InteractionEvent): void {
             this.goUp();
+            this.emit("buttonSelected", this._index);
         }
 
-        private onClick(): void {
-            if (!this._isSelected) {
-                this.goDown();
+        private onPointerUpOutside(e: PIXI.interaction.InteractionEvent): void {
+            if (this._isDown) {
+                this.goUp();
             }
-            this.on("pointerup", this.onButtonUp);
-            this.on("pointerupoutside", this.onButtonUpOutside);
         }
 
-        private onButtonUp(): void {
-            if (!this._isSelected && this._isDown) {
-                this.emit("buttonSelected", this);
-            }
+        private onPointerDown(e: PIXI.interaction.InteractionEvent): void {
+            this.goDown();
         }
 
         private goDown(): void {
@@ -77,14 +98,8 @@ namespace views {
             this._isDown = false;
         }
 
-        private onButtonUpOutside(): void {
-            if (this._isDown && !this._isSelected) {
-                this.goUp();
-            }
-        }
-
         private setTexts(): void {
-            this._actionLabel = new PIXI.Text(this._actionLabelDeal, {
+            this._actionLabel = new PIXI.Text(this._actionLabelText, {
                 fontSize: this._actionLabelFontSize,
             });
             this._actionLabel.x = (this._width - this._actionLabel.width) / 2;

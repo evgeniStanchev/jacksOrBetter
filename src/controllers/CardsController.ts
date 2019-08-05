@@ -9,6 +9,7 @@ namespace controllers {
     export class CardsController extends Pluck.ViewController {
         constructor() {
             super(new CardsView());
+            this._view.revealCards();
             // for (const card of this.view.cards) {
             //     card.on("click", this.onCardClick, this);
             // }
@@ -22,9 +23,11 @@ namespace controllers {
         }
 
         handleNotification(notification: Pluck.Notification): void {
+           console.log("Notification received")
             switch (notification.name) {
-                case Notifications.DEAL_RECEIVED: {
-                    this.view.revealCards();
+                case Notifications.DEAL: {
+                    console.log("revealing")
+                    this._view.revealCards();
                     break;
                 }
             }
