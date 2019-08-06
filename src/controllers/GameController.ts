@@ -24,6 +24,10 @@ namespace controllers {
             this.init();
         }
 
+        set data(val) {
+            this.mModel.data = val;
+        }
+
         private init(): void {
             this._app = new PIXI.Application({
                 width: 1280,
@@ -52,6 +56,10 @@ namespace controllers {
             this.addChildViewController(this._cardsController);
             this._buttonsController = new ButtonsController();
             this.addChildViewController(this._buttonsController);
+        }
+
+        private get mModel(): GameModel {
+            return this._model as GameModel;
         }
     }
 }

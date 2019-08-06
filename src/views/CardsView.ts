@@ -17,18 +17,7 @@ namespace views {
         constructor() {
             super();
             this._cards = [];
-            this.init();
-        }
-
-        private init(): void {
-            for (let index = 0; index < CardsView.COUNT; index++) {
-                const newCard = new Card(this.getRandomSuit(), this.getRandomRank());
-                newCard.x = CardsView.X;
-                newCard.x += index * (CardsView.CARD_WIDTH + CardsView.DISTANCE_BETWEEN);
-                newCard.y = CardsView.Y;
-                this._cards.push(newCard);
-                this.addChild(newCard);
-            }
+            this.createNewCards();
         }
 
         public get cards(): Card[] {
@@ -39,13 +28,49 @@ namespace views {
             this._speed = val;
         }
 
+        public setNewRanksAndSuits(): void {
+            for (const currentCard of this._cards) {
+                do {
+                    currentCard.setSuitAndRank(this.getRandomRank(), this.getRandomSuit());
+                    console.log(currentCard.rank, currentCard.suit);
+                } while (this.cardExists(currentCard));
+            }
+        }
+        private createNewCards(): void {
+            for (let index = 0; index < CardsView.COUNT; index++) {
+                const newCard = new Card();
+                newCard.x = CardsView.X;
+                newCard.x += index * (CardsView.CARD_WIDTH + CardsView.DISTANCE_BETWEEN);
+                newCard.y = CardsView.Y;
+                this._cards.push(newCard);
+                this.addChild(newCard);
+            }
+        }
+
+        private cardExists(card: Card): boolean {
+            for (const currentCard of this._cards) {
+                if (card.rank == currentCard.rank && card.suit == currentCard.suit && card != currentCard) {
+                    console.log(card, this.cards);
+                    return true;
+                }
+            }
+            return false;
+        }
+
         revealCards(): void {
             for (let index = 0; index < this._cards.length; index++) {
                 if (!this._cards[index].isHeld) {
                     setTimeout(() => {
                         this._cards[index].reveal();
                     }, 100 * index);
+                    console.log(this._cards.length);
                 }
+            }
+        }
+
+        hideCards(): void {
+            for (let index = 0; index < this._cards.length; index++) {
+                this._cards[index].hide();
             }
         }
 
@@ -65,7 +90,7 @@ namespace views {
 
         //TODO alternative
         private getRandomRank(): Rank {
-            const num = Math.floor(Math.random() * 10 + 2);
+            const num = Math.floor((Math.random() * 20) % 13) + 2;
             switch (num) {
                 case 2: {
                     return "2";

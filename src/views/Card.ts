@@ -18,12 +18,24 @@ namespace views {
         private _suit: Suit;
         private _rank: Rank;
 
-        constructor(suit: Suit, rank: Rank) {
+        constructor() {
             super();
-            this._suit = suit;
-            this._rank = rank;
             this.init();
             this.texture = this._backTexture;
+        }
+
+        public setSuitAndRank(rank: Rank, suit: Suit) {
+            this._rank = rank;
+            this._suit = suit;
+            this.addSuitAndRank();
+        }
+
+        public get rank(): Rank {
+            return this._rank;
+        }
+
+        public get suit(): Suit {
+            return this._suit;
         }
 
         private init() {
@@ -33,8 +45,10 @@ namespace views {
             this._winLabel = PIXI.Sprite.fromImage("./assets/mainCards/win_en.png");
 
             this._isHeld = false;
-            this._suitLabel = this.getSuitSprite(this._suit);
+        }
 
+        public addSuitAndRank(): void {
+            this._suitLabel = this.getSuitSprite(this._suit);
             if (this._suit == "D" || this._suit == "H") {
                 this._rankLabel = new PIXI.Text(this._rank, {
                     fontSize: 55,
@@ -52,13 +66,10 @@ namespace views {
             this._rankLabel.y = 3;
 
             this.addSpecificSprite();
-
-          
         }
 
         private addSpecificSprite(): void {
             if (!Number(this._rank)) {
-               
                 switch (this._rank) {
                     case "J": {
                         this._specificSprite = PIXI.Sprite.fromImage("./assets/mainCards/jackImage.png");
@@ -91,13 +102,15 @@ namespace views {
                 this.texture = this._faceTexture;
                 this.addChild(this._suitLabel);
                 this.addChild(this._rankLabel);
-                if(this._specificSprite){
-                this.addChild(this._specificSprite);
-            }
+                if (this._specificSprite) {
+                    this.addChild(this._specificSprite);
+                }
             }
         }
 
-        toBack(): void {
+        hide(): void {
+            this._specificSprite = null;
+            this.removeChildren();
             this.texture = this._backTexture;
         }
 

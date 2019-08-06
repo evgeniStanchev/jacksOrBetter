@@ -129,12 +129,14 @@ namespace views {
                     this.updateActionLabel(this._actionLabelDeal);
                     //TODO this is not the right place
                     this._currentAction = "deal";
+                    this.emit("end");
                 } else if (animatedPrice == this._currentPrice) {
                     this.resetVariables();
                     clearInterval(collecting);
                     this.updateActionLabel(this._actionLabelDeal);
                     //TODO this is not the right place
                     this._currentAction = "deal";
+                    this.emit("end");
                 } else {
                     animatedPrice += 5;
                     console.log(animatedPrice);
