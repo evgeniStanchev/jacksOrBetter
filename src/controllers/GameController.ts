@@ -3,13 +3,16 @@
 ///<reference path="../models/GameModel.ts"/>
 ///<reference path="./CardsController.ts"/>
 ///<reference path="./ButtonsController.ts"/>
+///<reference path="./BalanceController.ts"/>
 
 namespace controllers {
     import GameView = views.GameView;
     import Notifications = poker.Notifications;
     import GameModel = model.GameModel;
+
     import CardsController = controllers.CardsController;
     import ButtonsController = controllers.ButtonsController;
+    import BalanceController = controllers.BalanceController;
 
     export class GameController extends Pluck.ViewController {
         public static readonly WIDTH = 1280;
@@ -18,6 +21,7 @@ namespace controllers {
         private _app: PIXI.Application;
         private _cardsController: CardsController;
         private _buttonsController: ButtonsController;
+        private _balanceController: BalanceController;
 
         constructor() {
             super(new GameView(), new GameModel());
@@ -56,6 +60,8 @@ namespace controllers {
             this.addChildViewController(this._cardsController);
             this._buttonsController = new ButtonsController();
             this.addChildViewController(this._buttonsController);
+            this._balanceController = new BalanceController();
+            this.addChildViewController(this._balanceController);
         }
 
         private get mModel(): GameModel {

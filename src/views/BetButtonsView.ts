@@ -9,6 +9,8 @@ namespace views {
         public static readonly BUTTON_WIDTH = 86;
         public static readonly DISTANCE_BETWEEN = 10;
 
+        private readonly _buttonsY = 510;
+
         private readonly _actionLabelDraw: string = "Draw";
         private readonly _actionLabelDeal: string = "Deal";
         private readonly _actionLabelCollect: string = "Collect";
@@ -59,7 +61,7 @@ namespace views {
                 button.actionLabelText = this._actionLabelMaxBet;
             }
             button.x = 270 + index * (BetButtonsView.DISTANCE_BETWEEN + BetButtonsView.BUTTON_WIDTH);
-            button.y = 480;
+            button.y = this._buttonsY;
             this._buttons.push(button);
             this.addChild(button);
         }
