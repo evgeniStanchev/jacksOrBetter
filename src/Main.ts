@@ -1,8 +1,10 @@
 ///<reference path="./controllers/GameController.ts"/>
 ///<reference path="models/Resources.ts"/>
+///<reference path="Notifications.ts"/>
 namespace poker {
     import GameController = controllers.GameController;
     import Resources = model.Resources;
+    import Notification = poker.Notifications;
 
     export class Main extends PIXI.utils.EventEmitter {
         static REQUEST_DEAL = "requestBet";
@@ -11,15 +13,18 @@ namespace poker {
 
         private _res: Resources;
         private _rootController: GameController;
+
         constructor() {
             super();
-            //  this._res = new Resources();
-            //  this._res.load();
-            const a = 5;
-            const root = new GameController();
+            this._res = new Resources();
+            this._res.load();
+            this._res.on(Notification.RESOURCES_LOADED, this.onResourcesLoaded, this);
+        }
 
-            Pluck.ViewController.setRoot(root);
-            root.addControllers();
+        onResourcesLoaded(): void {
+            this._rootController = new GameController();
+            Pluck.ViewController.setRoot(this._rootController);
+            this._rootController.addControllers();
         }
 
         requestDeal(): void {
@@ -34,7 +39,7 @@ namespace poker {
             });
         }
 
-        set data(val) {
+        set data(val: any) {
             this._rootController.data = val;
         }
     }

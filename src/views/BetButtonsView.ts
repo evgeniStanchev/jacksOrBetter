@@ -37,10 +37,7 @@ namespace views {
             }
         }
 
-        public get buttons(): BetButton[] {
-            return this._buttons;
-        }
-
+        //TODO not here
         private setBets(): void {
             this._bets[0] = 1;
             this._bets[1] = 2;
@@ -56,9 +53,9 @@ namespace views {
         }
 
         private createButton(index: number) {
-            const button = new BetButton(this._bets[index], index, this._actionLabelDeal);
-            if (index == BetButtonsView.COUNT - 1) {
-                button.isMaxBet = true;
+            const isMaxBet = index == BetButtonsView.COUNT - 1;
+            const button = new BetButton(this._bets[index], index, this._actionLabelDeal, isMaxBet);
+            if (button.isMaxBet) {
                 button.actionLabelText = this._actionLabelMaxBet;
             }
             button.x = 270 + index * (BetButtonsView.DISTANCE_BETWEEN + BetButtonsView.BUTTON_WIDTH);
@@ -107,9 +104,7 @@ namespace views {
         }
 
         private isWin(): boolean {
-            const num: number = Math.floor(Math.random() * 10) % 2;
-            const isWin = num == 0 ? true : false;
-            console.log(isWin ? "win" : "lose");
+            const isWin = Math.floor(Math.random() * 10) % 2 == 0 ? true : false;
             this._currentPrice = this.calculatePrice();
             return isWin;
         }

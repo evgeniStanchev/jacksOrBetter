@@ -2,13 +2,15 @@ namespace views {
     export class BetButton extends PIXI.Sprite {
         public readonly _width = 87;
 
-        private _isMaxBet: boolean;
+        private _isDown: boolean;
         private _actionLabel: PIXI.Text;
         private _isSelected: boolean;
+
+        private readonly _isMaxBet: boolean;
         private readonly _index: number;
 
-        private readonly _inactiveTexture = PIXI.Texture.fromImage("../../bin/assets/button/betButtonInactive.png");
-        private readonly _activeTexture = PIXI.Texture.fromImage("../../bin/assets/button/betButtonActive.png");
+        private readonly _inactiveTexture = PIXI.Texture.from("buttonInactive");
+        private readonly _activeTexture = PIXI.Texture.from("buttonActive");
         private readonly _actionLabelFontSize = 15;
         private readonly _actionLabelY = 52;
         private readonly _actionLabelText: string;
@@ -18,14 +20,12 @@ namespace views {
         private readonly _betLabelY = -1;
         private readonly _betLabelText: string = "BET";
 
-        private _betPriceLabel: PIXI.Text;
-        private readonly _betPrice: number;
-        private readonly _betPriceLabelY = 13;
-        private readonly _betPriceLabelSize = 35;
+        private _betValueLabel: PIXI.Text;
+        private readonly _betValue: number;
+        private readonly _betValueLabelY = 13;
+        private readonly _betValueLabelSize = 35;
 
-        private _isDown: boolean;
-
-        constructor(bet: number, index: number, actionLabel: string) {
+        constructor(betValue: number, index: number, actionLabel: string, isMaxBet) {
             super();
             this.texture = this._inactiveTexture;
             this.buttonMode = true;
@@ -33,9 +33,9 @@ namespace views {
             this.on("pointerup", this.onPointerUp);
             this.on("pointerupoutside", this.onPointerUpOutside);
             this._index = index;
-            this._betPrice = bet;
+            this._betValue = betValue;
             this._isDown = false;
-            this._isMaxBet = false;
+            this._isMaxBet = isMaxBet;
             this._actionLabelText = actionLabel;
             this.setTexts();
         }
@@ -49,13 +49,8 @@ namespace views {
             this.resetCoordinates();
         }
 
-        public;
         public get isMaxBet(): boolean {
             return this._isMaxBet;
-        }
-
-        public set isMaxBet(isMaxBet: boolean) {
-            this._isMaxBet = isMaxBet;
         }
 
         public selectButton(): void {
@@ -74,8 +69,10 @@ namespace views {
         }
 
         private onPointerUp(e: PIXI.interaction.InteractionEvent): void {
-            this.goUp();
-            this.emit("buttonSelected", this._index);
+            if (this._isDown) {
+                this.goUp();
+                this.emit("buttonSelected", this._index);
+            }
         }
 
         private onPointerUpOutside(e: PIXI.interaction.InteractionEvent): void {
@@ -114,15 +111,15 @@ namespace views {
             this._betLabel.y = this._betLabelY;
             this.addChild(this._betLabel);
 
-            this._betPriceLabel = new PIXI.Text(this._betPrice.toString(), {
-                fontSize: this._betPriceLabelSize,
+            this._betValueLabel = new PIXI.Text(this._betValue.toString(), {
+                fontSize: this._betValueLabelSize,
                 fill: "white",
                 align: "center",
             });
-            this._betPriceLabel.x = (this._width - this._betPriceLabel.width) / 2;
-            this._betPriceLabel.y = this._betPriceLabelY;
+            this._betValueLabel.x = (this._width - this._betValueLabel.width) / 2;
+            this._betValueLabel.y = this._betValueLabelY;
 
-            this.addChild(this._betPriceLabel);
+            this.addChild(this._betValueLabel);
         }
     }
 }

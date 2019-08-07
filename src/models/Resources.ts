@@ -3,14 +3,14 @@
 namespace model {
     import Notifications = poker.Notifications;
 
-    export class Resources extends Pluck.Model {
+    export class Resources extends PIXI.utils.EventEmitter {
         constructor() {
             super();
         }
 
         load(): void {
             PIXI.loader
-                .add("background", "./assets/background.png")
+                .add("background", "./../../bin/assets/background.png")
                 .add("sound", "./assets/sound.png")
                 .add("cleanCard", "./assets/mainCards/card_clean.png")
                 .add("cardBackBlack", "./assets/mainCards/cardBackBlack.png")
@@ -27,6 +27,8 @@ namespace model {
                 .add("winLabel", "./assets/mainCards/win_en.png")
                 .add("gambleRed", "./assets/gamble/gambleRed.png")
                 .add("gambleWin", "./assets/gamble/gambleWin.png")
+                .add("buttonInactive", "./assets/button/betButtonInactive.png")
+                .add("buttonActive", "./assets/button/betButtonActive.png")
                 .add("cardBlink", "./assets/commonSounds/cardBlink.mp3")
                 .add("cardSwap", "./assets/commonSounds/cardSwap.mp3")
                 .add("collectButton", "./assets/commonSounds/collectButton.mp3")
@@ -44,7 +46,7 @@ namespace model {
         }
 
         private onLoad(): void {
-            this.sendNotification(Notifications.RESOURCES_LOADED);
+            this.emit(Notifications.RESOURCES_LOADED);
         }
     }
 }
