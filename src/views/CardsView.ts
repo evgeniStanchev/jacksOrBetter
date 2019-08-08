@@ -5,11 +5,10 @@ namespace views {
     import Suit = poker.suit;
     export class CardsView extends PIXI.Container {
         public static readonly COUNT = 5;
-        public static readonly X = 90;
-        public static readonly Y = 235;
-        public static readonly CARD_WIDTH = 170;
-        public static readonly CARD_HEIGHT = 235;
         public static readonly DISTANCE_BETWEEN = 10;
+
+        private readonly _x = 90;
+        private readonly _y = 335;
 
         private _cards: Card[];
         private _speed: number = 1;
@@ -39,9 +38,9 @@ namespace views {
         private createNewCards(): void {
             for (let index = 0; index < CardsView.COUNT; index++) {
                 const newCard = new Card();
-                newCard.x = CardsView.X;
-                newCard.x += index * (CardsView.CARD_WIDTH + CardsView.DISTANCE_BETWEEN);
-                newCard.y = CardsView.Y;
+                newCard.x = this._x;
+                newCard.x += index * (newCard.width + CardsView.DISTANCE_BETWEEN);
+                newCard.y = this._y;
                 this._cards.push(newCard);
                 this.addChild(newCard);
             }

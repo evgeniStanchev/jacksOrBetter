@@ -44,6 +44,10 @@ namespace views {
             return this._isSelected;
         }
 
+        public get betValue(): number {
+            return this._betValue;
+        }
+
         public set actionLabelText(text: string) {
             this._actionLabel.text = text;
             this.resetCoordinates();

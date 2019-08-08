@@ -13,7 +13,6 @@ namespace controllers {
             // for (const card of this.view.cards) {
             //     card.on("click", this.onCardClick, this);
             // }
-
             // const mModel = this.gameModel;
             // console.log(mModel);
         }

@@ -27,10 +27,11 @@ namespace poker {
             this._rootController.addControllers();
         }
 
-        requestDeal(): void {
+        requestDeal(bet:number): void {
             this.emit(Main.REQUEST_DEAL, {
-                bet: 1000,
+                bet: bet,
             });
+            console.log("Bet requested")
         }
 
         requestDraw(): void {

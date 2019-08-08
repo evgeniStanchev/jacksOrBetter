@@ -1,6 +1,7 @@
 ///<reference path="../Main.ts"/>
 ///<reference path="../Notifications.ts"/>
 ///<reference path="../types/action.ts"/>
+
 namespace model {
     import Main = poker.Main;
     import Notification = poker.Notifications;
@@ -21,6 +22,14 @@ namespace model {
         public changeCurrency(): void {
             this.isShowingCredits = !this.isShowingCredits;
             this.sendNotification(Notification.CURRENCY_CHANGED);
+        }
+
+        public requestDeal(bet: number): boolean {
+            if (bet <= this.balance) {
+                this.balance -= bet;
+                return true;
+            }
+            return false;
         }
 
         set data(val: any) {

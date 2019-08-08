@@ -1,17 +1,20 @@
 ///<reference path="../types/listening.ts"/>
 ///<reference path="../types/action.ts"/>
+///<reference path="../Notifications.ts"/>
 namespace views {
     import Action = poker.action;
     import listening = poker.listening;
+    import Notification = poker.Notifications;
 
     export class BetButtonsView extends PIXI.Container {
         public static readonly COUNT = 5;
         public static readonly BUTTON_WIDTH = 86;
         public static readonly DISTANCE_BETWEEN = 10;
 
-        private readonly _buttonsY = 510;
+        private readonly _buttonsY = 610;
 
         private readonly _actionLabelDraw: string = "Draw";
+
         private readonly _actionLabelDeal: string = "Deal";
         private readonly _actionLabelCollect: string = "Collect";
         private readonly _actionLabelMaxBet: string = "Max Bet";
@@ -21,10 +24,11 @@ namespace views {
         private _bets: number[];
         private _currentAction: Action;
         private _currentPrice: number;
+        private _selectedButton: BetButton;
 
         constructor() {
             super();
-            this._currentAction = "deal";
+            this._currentAction = "deal clicked";
             this._buttons = [];
             this._bets = [];
             this.setBets();
@@ -76,6 +80,7 @@ namespace views {
             for (const button of this._buttons) {
                 if (this._buttons.indexOf(button) == buttonIndex) {
                     button.selectButton();
+                    this._selectedButton = button;
                 } else {
                     if (button.isSelected) {
                         button.deselectButton();
@@ -83,18 +88,6 @@ namespace views {
                 }
             }
             this.doAction();
-        }
-
-        private hasBalance(): boolean {
-            return true;
-        }
-
-        private takeBalance(): void {
-            //TODO
-        }
-
-        private turnCards(heldCards?: Card[]): void {
-            //TODO
         }
 
         private updateActionLabel(newLabel: string): void {
@@ -125,14 +118,14 @@ namespace views {
                     clearInterval(collecting);
                     this.updateActionLabel(this._actionLabelDeal);
                     //TODO this is not the right place
-                    this._currentAction = "deal";
+                    this._currentAction = "deal clicked";
                     this.emit("end");
                 } else if (animatedPrice == this._currentPrice) {
                     this.resetVariables();
                     clearInterval(collecting);
                     this.updateActionLabel(this._actionLabelDeal);
                     //TODO this is not the right place
-                    this._currentAction = "deal";
+                    this._currentAction = "deal clicked";
                     this.emit("end");
                 } else {
                     animatedPrice += 5;
@@ -146,44 +139,19 @@ namespace views {
             this._isCollectingStopped = false;
         }
 
-        private doAction(): void {
-            switch (this._currentAction) {
-                case "deal": {
-                    if (this.hasBalance()) {
-                        console.log("emitting deal");
-                        this.takeBalance();
-                        this.updateActionLabel(this._actionLabelDraw);
-                        this.emit(this._currentAction);
-                        this._currentAction = "draw";
-                        break;
-                    } else {
-                        throw "Umm... you are poor";
-                        break;
-                    }
-                }
-                case "draw": {
-                    this.turnCards();
-                    if (this.isWin()) {
-                        this.emit(this._currentAction);
-                        this.updateActionLabel(this._actionLabelCollect);
-                        this.collect();
-                        this._currentAction = "collect";
-                    } else {
-                        this.emit(this._currentAction);
-                        this.updateActionLabel(this._actionLabelDeal);
-                        this._currentAction = "deal";
-                    }
-                    break;
-                }
-                case "collect": {
-                    this.emit(this._currentAction);
-                    this.updateActionLabel(this._actionLabelDeal);
-                    this._currentAction = "deal";
-                    this.stopCollecting();
+        // if (this.isWin()) {
+        //     this.emit(this._currentAction);
+        //     this.updateActionLabel(this._actionLabelCollect);
+        //     this.collect();
+        //     this._currentAction = "collect";
+        // } else {
+        //     this.emit(this._currentAction);
+        //     this.updateActionLabel(this._actionLabelDeal);
+        //     this._currentAction = "deal";
+        // }
 
-                    break;
-                }
-            }
+        private doAction(): void {
+            this.emit(this._currentAction, this._selectedButton);
         }
 
         private stopCollecting() {

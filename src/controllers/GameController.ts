@@ -4,12 +4,18 @@
 ///<reference path="./CardsController.ts"/>
 ///<reference path="./ButtonsController.ts"/>
 ///<reference path="./BalanceController.ts"/>
+///<reference path="./WinController.ts"/>
+///<reference path="./GambleButtonController.ts"/>
+///<reference path="./ActionController.ts"/>
 
 namespace controllers {
     import GameView = views.GameView;
     import Notifications = poker.Notifications;
     import GameModel = model.GameModel;
+    import WinController = controllers.WinController;
+    import ActionController = controllers.ActionController;
 
+    import GambleButtonController = controllers.GambleButtonController;
     import CardsController = controllers.CardsController;
     import ButtonsController = controllers.ButtonsController;
     import BalanceController = controllers.BalanceController;
@@ -22,6 +28,9 @@ namespace controllers {
         private _cardsController: CardsController;
         private _buttonsController: ButtonsController;
         private _balanceController: BalanceController;
+        private _winController: WinController;
+        private _actionController: ActionController;
+        private _gambleButtonController: GambleButtonController;
 
         constructor() {
             super(new GameView(), new GameModel());
@@ -42,16 +51,13 @@ namespace controllers {
         }
 
         public getInterests(): string[] {
-            return [Notifications.RESOURCES_LOADED];
+            return [Notifications.BUTTON_CLICK_DEAL];
         }
 
         public handleNotification(note: Pluck.Notification) {
-            switch (
-                note.name
-                // case Notifications.RESOURCES_LOADED:
-                //     this.addControllers();
-                //     break;
-            ) {
+            switch (note.name) {
+                case Notifications.BUTTON_CLICK_DEAL: {
+                }
             }
         }
 
@@ -62,6 +68,12 @@ namespace controllers {
             this.addChildViewController(this._buttonsController);
             this._balanceController = new BalanceController();
             this.addChildViewController(this._balanceController);
+            this._winController = new WinController();
+            this.addChildViewController(this._winController);
+            this._gambleButtonController = new GambleButtonController();
+            this.addChildViewController(this._gambleButtonController);
+            this._actionController = new ActionController();
+            this.addChildViewController(this._actionController);
         }
 
         private get mModel(): GameModel {
