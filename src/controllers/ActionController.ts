@@ -1,6 +1,6 @@
-///<reference path="../views/ActionView.ts"/>
+///<reference path="../views/InfoView.ts"/>
 namespace controllers {
-    import ActionView = views.ActionView;
+    import ActionView = views.InfoView;
 
     export class ActionController extends Pluck.ViewController {
         constructor() {
@@ -9,3 +9,4 @@ namespace controllers {
         }
     }
 }
+

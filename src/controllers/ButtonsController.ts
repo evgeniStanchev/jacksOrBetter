@@ -2,31 +2,36 @@
 ///<reference path="../Notifications.ts"/>
 ///<reference path="../views/BetButton.ts"/>
 ///<reference path="../models/GameModel.ts"/>
+///<reference path="../server/Request.ts"/>
 
 namespace controllers {
     import Notification = poker.Notifications;
     import BetButtonsView = views.BetButtonsView;
     import BetButton = views.BetButton;
     import GameModel = model.GameModel;
+    import Request = server.Request;
 
     export class ButtonsController extends Pluck.ViewController {
-
         constructor() {
             super(new BetButtonsView());
-            this._view.on("draw clicked", this.onButtonDraw, this);
-            this._view.on("deal clicked", this.onButtonDeal, this);
-            this._view.on("collect clicked", this.onButtonCollect, this);
+            this._view.on("deal clicked", this.onButtonDealClicked, this);
+            this._view.on("draw clicked", this.onButtonDrawClicked, this);
+            this._view.on("collect clicked", this.onButtonCollectClicked, this);
         }
 
-        get gameModel(): GameModel {
+        public get view(): BetButtonsView {
+            return this._view;
+        }
+
+        public get gameModel(): GameModel {
             return (Pluck.ViewController.root as any)._model;
         }
 
-        getInterests(): string[] {
+        public getInterests(): string[] {
             return [Notification.DEAL_SUCCESSFUL];
         }
 
-        handleNotification(notification: Pluck.Notification): void {
+        public handleNotification(notification: Pluck.Notification): void {
             switch (notification.name) {
                 case Notification.DEAL_SUCCESSFUL: {
                     this._view.changeBalance();
@@ -34,19 +39,19 @@ namespace controllers {
             }
         }
 
-        private onButtonDraw(): void {
+        private onButtonDrawClicked(): void {
             console.log("sending notification:", Notification.BUTTON_CLICK_DRAW);
             this.sendNotification(Notification.BUTTON_CLICK_DRAW);
         }
 
-        private onButtonDeal(selectedButton: BetButton): void {
-           
-            this.gameModel.facade.requestDeal(selectedButton.betValue);
+        private onButtonDealClicked(selectedButton: BetButton): void {
+            const request = new Request();
+            this.gameModel.facade.requestDeal(request);
             console.log("sending notification:", Notification.BUTTON_CLICK_DEAL);
             this.sendNotification(Notification.BUTTON_CLICK_DEAL);
         }
 
-        private onButtonCollect(): void {
+        private onButtonCollectClicked(): void {
             console.log("sending notification:", Notification.BUTTON_CLICK_COLLECT);
             this.sendNotification(Notification.BUTTON_CLICK_COLLECT);
         }

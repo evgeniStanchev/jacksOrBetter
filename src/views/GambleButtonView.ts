@@ -5,7 +5,9 @@ namespace views {
         private readonly _width = 160;
         private readonly _height = 30;
         private readonly _radius = 16;
-        private _lastWinText: PIXI.Text;
+        private _label: PIXI.Text;
+        private _lastWinText = "LAST WIN";
+        private _gambleText = "GAMBLE";
 
         constructor() {
             super();
@@ -21,14 +23,14 @@ namespace views {
         }
 
         private setTexts(): void {
-            this._lastWinText = new PIXI.Text("LAST WIN", {
+            this._label = new PIXI.Text(this._lastWinText, {
                 fontSize: 15,
                 fill: 0x014d8a,
-                fontWeight: "bolder"
+                fontWeight: "bolder",
             });
-            this._lastWinText.x = this._x + (this._width - this._lastWinText.width) / 2;
-            this._lastWinText.y = this._y + (this._height - this._lastWinText.height) / 2;
-            this.addChild(this._lastWinText);
+            this._label.x = this._x + (this._width - this._label.width) / 2;
+            this._label.y = this._y + (this._height - this._label.height) / 2;
+            this.addChild(this._label);
         }
     }
 }

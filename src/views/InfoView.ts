@@ -1,5 +1,5 @@
 namespace views {
-    export class ActionView extends PIXI.Graphics {
+    export class InfoView extends PIXI.Graphics {
         private readonly _x = 275;
         private readonly _y = 575;
         private readonly _width = 465;

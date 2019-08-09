@@ -87,7 +87,9 @@ namespace views {
                     }
                 }
             }
-            this.doAction();
+
+            //TODO Action must be in controller
+            this.emit(this._currentAction, this._selectedButton);
         }
 
         private updateActionLabel(newLabel: string): void {
@@ -149,10 +151,6 @@ namespace views {
         //     this.updateActionLabel(this._actionLabelDeal);
         //     this._currentAction = "deal";
         // }
-
-        private doAction(): void {
-            this.emit(this._currentAction, this._selectedButton);
-        }
 
         private stopCollecting() {
             this._isCollectingStopped = true;
