@@ -2,21 +2,23 @@
 ///<reference path="../Notifications.ts"/>
 ///<reference path="../views/BetButton.ts"/>
 ///<reference path="../models/GameModel.ts"/>
-///<reference path="../server/Request.ts"/>
+///<reference path="../types/action.ts"/>
 
 namespace controllers {
     import Notification = poker.Notifications;
     import BetButtonsView = views.BetButtonsView;
     import BetButton = views.BetButton;
     import GameModel = model.GameModel;
-    import Request = server.Request;
+    import Action = poker.action;
 
     export class ButtonsController extends Pluck.ViewController {
+
+        private _currentAction: Action;
+
         constructor() {
             super(new BetButtonsView());
-            this._view.on("deal clicked", this.onButtonDealClicked, this);
-            this._view.on("draw clicked", this.onButtonDrawClicked, this);
-            this._view.on("collect clicked", this.onButtonCollectClicked, this);
+            this._currentAction = "deal clicked";
+            this._view.on("buttonClicked", this.onButtonClicked, this);
         }
 
         public get view(): BetButtonsView {
@@ -34,7 +36,28 @@ namespace controllers {
         public handleNotification(notification: Pluck.Notification): void {
             switch (notification.name) {
                 case Notification.DEAL_SUCCESSFUL: {
-                    this._view.changeBalance();
+                    console.log("Deal ? ")
+                    this._currentAction = "draw clicked";
+                    this._view.updateAction("Draw");
+                    // this._view.
+                    break;
+                }
+            }
+        }
+
+        private onButtonClicked(selectedButton :BetButton): void{
+            switch(this._currentAction){
+                case("draw clicked"):{
+                    this.onButtonDrawClicked();
+                    break;
+                }
+                case("deal clicked"):{
+                    this.onButtonDealClicked(selectedButton);
+                    break;
+                }
+                case("collect clicked"):{
+                    this.onButtonCollectClicked();
+                    break;
                 }
             }
         }
@@ -45,8 +68,7 @@ namespace controllers {
         }
 
         private onButtonDealClicked(selectedButton: BetButton): void {
-            const request = new Request();
-            this.gameModel.facade.requestDeal(request);
+            this.gameModel.facade.requestDraw(selectedButton.betValue);
             console.log("sending notification:", Notification.BUTTON_CLICK_DEAL);
             this.sendNotification(Notification.BUTTON_CLICK_DEAL);
         }

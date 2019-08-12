@@ -6,23 +6,21 @@
 ///<reference path="./BalanceController.ts"/>
 ///<reference path="./WinController.ts"/>
 ///<reference path="./GambleButtonController.ts"/>
-///<reference path="./ActionController.ts"/>
+///<reference path="./InfoController.ts"/>
 ///<reference path="../Main.ts"/>
-///<reference path="../server/Server.ts"/>
 
 namespace controllers {
     import GameView = views.GameView;
     import Notifications = poker.Notifications;
     import GameModel = model.GameModel;
     import WinController = controllers.WinController;
-    import ActionController = controllers.ActionController;
+    import InfoController = controllers.InfoController;
     import Main = poker.Main;
 
     import GambleButtonController = controllers.GambleButtonController;
     import CardsController = controllers.CardsController;
     import ButtonsController = controllers.ButtonsController;
     import BalanceController = controllers.BalanceController;
-    import Server = server.Server;
 
     export class GameController extends Pluck.ViewController {
         public static readonly WIDTH = 1280;
@@ -33,15 +31,13 @@ namespace controllers {
         private _buttonsController: ButtonsController;
         private _balanceController: BalanceController;
         private _winController: WinController;
-        private _actionController: ActionController;
+        private _infoController: InfoController;
         private _gambleButtonController: GambleButtonController;
-        private _server : Server;
+        private _facade: Main;
 
-        constructor(facade:Main) {
+        constructor(facade: Main) {
             super(new GameView(), new GameModel());
-            this.mModel.facade=facade;
-            this._server = new Server(5000);
-            this.mModel.facade.on("draw", this.requestDraw, this);
+            this.mModel.facade = facade;
             this.init();
         }
 
@@ -49,7 +45,7 @@ namespace controllers {
             this.mModel.data = val;
         }
 
-        private get mModel(): GameModel {
+        public get mModel(): GameModel {
             return this._model as GameModel;
         }
 
@@ -78,19 +74,14 @@ namespace controllers {
             this.addChildViewController(this._cardsController);
             this._buttonsController = new ButtonsController();
             this.addChildViewController(this._buttonsController);
-            this._balanceController = new BalanceController();
+            this._balanceController = new BalanceController(this.mModel);
             this.addChildViewController(this._balanceController);
             this._winController = new WinController();
             this.addChildViewController(this._winController);
             this._gambleButtonController = new GambleButtonController();
             this.addChildViewController(this._gambleButtonController);
-            this._actionController = new ActionController();
-            this.addChildViewController(this._actionController);
+            this._infoController = new InfoController();
+            this.addChildViewController(this._infoController);
         }
-
-      private requestDraw():void{
-        // this._server.request
-      }
-
     }
 }

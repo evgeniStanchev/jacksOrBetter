@@ -1,20 +1,17 @@
 ///<reference path="./controllers/GameController.ts"/>
 ///<reference path="models/Resources.ts"/>
 ///<reference path="Notifications.ts"/>
-///<reference path="./server/Request.ts"/>
 namespace poker {
     import GameController = controllers.GameController;
     import Resources = model.Resources;
     import Notification = poker.Notifications;
-    import Request = server.Request;
 
     export class Main extends PIXI.utils.EventEmitter {
-        static REQUEST_DEAL = "requestBet";
-        static REQUEST_DRAW = "requestDraw";
-        static REQUEST_COLLECT = "requestCollect";
-
-        private _res: Resources;
+        private readonly _res: Resources;
         private _rootController: GameController;
+
+        private readonly _requestDraw = "requestDraw";
+        private readonly _requestCollect = "requestCollect";
 
         constructor() {
             super();
@@ -22,28 +19,31 @@ namespace poker {
             this._res.load();
             this._res.on(Notification.RESOURCES_LOADED, this.onResourcesLoaded, this);
         }
+        
+        public set data(val: { action: string; amount: number }) {
+            this._rootController.data = val;
+        }
 
-        onResourcesLoaded(): void {
+        private onResourcesLoaded(): void {
             this._rootController = new GameController(this);
             Pluck.ViewController.setRoot(this._rootController);
             this._rootController.addControllers();
+            this.emit("resources loaded");
         }
 
-        requestDeal(request: Request): void {
-            this.emit(Main.REQUEST_DEAL, {
-                request,
-            });
-            console.log("Bet requested " + request);
-        }
+        public changeState(): void {}
 
-        requestDraw(): void {
-            this.emit(Main.REQUEST_DRAW, {
-                bet: 1000,
+        public requestDraw(bet: number): void {
+            this.emit(this._requestDraw, {
+                bet: bet,
             });
         }
 
-        set data(val: any) {
-            this._rootController.data = val;
+        public requestCollect(amount: number): void {
+            this.emit(this._requestCollect, {
+                amount: amount,
+            });
         }
+
     }
 }

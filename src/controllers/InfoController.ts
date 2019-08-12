@@ -1,11 +1,11 @@
 ///<reference path="../views/InfoView.ts"/>
 namespace controllers {
-    import ActionView = views.InfoView;
+    import InfoView = views.InfoView;
 
-    export class ActionController extends Pluck.ViewController {
+    export class InfoController extends Pluck.ViewController {
         constructor() {
             //TODO balance must be received from server
-            super(new ActionView());
+            super(new InfoView());
         }
     }
 }

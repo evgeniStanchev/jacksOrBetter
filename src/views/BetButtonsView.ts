@@ -1,10 +1,10 @@
 ///<reference path="../types/listening.ts"/>
-///<reference path="../types/action.ts"/>
 ///<reference path="../Notifications.ts"/>
+///<reference path="../types/action.ts"/>
 namespace views {
-    import Action = poker.action;
     import listening = poker.listening;
     import Notification = poker.Notifications;
+    import Action = poker.action;
 
     export class BetButtonsView extends PIXI.Container {
         public static readonly COUNT = 5;
@@ -22,13 +22,13 @@ namespace views {
         private _isCollectingStopped = false;
         private _buttons: BetButton[];
         private _bets: number[];
-        private _currentAction: Action;
+
         private _currentPrice: number;
         private _selectedButton: BetButton;
 
         constructor() {
             super();
-            this._currentAction = "deal clicked";
+
             this._buttons = [];
             this._bets = [];
             this.setBets();
@@ -89,10 +89,10 @@ namespace views {
             }
 
             //TODO Action must be in controller
-            this.emit(this._currentAction, this._selectedButton);
+            this.emit("button clicked", this._selectedButton);
         }
 
-        private updateActionLabel(newLabel: string): void {
+        public updateAction(newLabel: Action) {
             for (const button of this._buttons) {
                 if (!button.isMaxBet) {
                     button.actionLabelText = newLabel;
@@ -100,46 +100,46 @@ namespace views {
             }
         }
 
-        private isWin(): boolean {
-            const isWin = Math.floor(Math.random() * 10) % 2 == 0 ? true : false;
-            this._currentPrice = this.calculatePrice();
-            return isWin;
-        }
+        // private isWin(): boolean {
+        //     const isWin = Math.floor(Math.random() * 10) % 2 == 0 ? true : false;
+        //     this._currentPrice = this.calculatePrice();
+        //     return isWin;
+        // }
 
-        private calculatePrice(): number {
-            //TODO
-            return 200;
-        }
+        // private calculatePrice(): number {
+        //     //TODO
+        //     return 200;
+        // }
 
-        private collect(): void {
-            let animatedPrice = 0;
-            const collecting = setInterval(() => {
-                if (this._isCollectingStopped) {
-                    console.log(this._currentPrice);
-                    this.resetVariables();
-                    clearInterval(collecting);
-                    this.updateActionLabel(this._actionLabelDeal);
-                    //TODO this is not the right place
-                    this._currentAction = "deal clicked";
-                    this.emit("end");
-                } else if (animatedPrice == this._currentPrice) {
-                    this.resetVariables();
-                    clearInterval(collecting);
-                    this.updateActionLabel(this._actionLabelDeal);
-                    //TODO this is not the right place
-                    this._currentAction = "deal clicked";
-                    this.emit("end");
-                } else {
-                    animatedPrice += 5;
-                    console.log(animatedPrice);
-                }
-            }, 100);
-        }
+        // private collect(): void {
+        //     let animatedPrice = 0;
+        //     const collecting = setInterval(() => {
+        //         if (this._isCollectingStopped) {
+        //             console.log(this._currentPrice);
+        //             this.resetVariables();
+        //             clearInterval(collecting);
+        //             this.updateActionLabel(this._actionLabelDeal);
+        //             //TODO this is not the right place
+        //             this._currentAction = "deal clicked";
+        //             this.emit("end");
+        //         } else if (animatedPrice == this._currentPrice) {
+        //             this.resetVariables();
+        //             clearInterval(collecting);
+        //             this.updateActionLabel(this._actionLabelDeal);
+        //             //TODO this is not the right place
+        //             this._currentAction = "deal clicked";
+        //             this.emit("end");
+        //         } else {
+        //             animatedPrice += 5;
+        //             console.log(animatedPrice);
+        //         }
+        //     }, 100);
+        // }
 
-        private resetVariables(): void {
-            this._currentPrice = 0;
-            this._isCollectingStopped = false;
-        }
+        // private resetVariables(): void {
+        //     this._currentPrice = 0;
+        //     this._isCollectingStopped = false;
+        // }
 
         // if (this.isWin()) {
         //     this.emit(this._currentAction);
@@ -152,8 +152,8 @@ namespace views {
         //     this._currentAction = "deal";
         // }
 
-        private stopCollecting() {
-            this._isCollectingStopped = true;
-        }
+        // private stopCollecting() {
+        //     this._isCollectingStopped = true;
+        // }
     }
 }

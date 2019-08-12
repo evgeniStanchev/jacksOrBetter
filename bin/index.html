@@ -15,7 +15,8 @@
         <script src="Game.min.js"></script>
         <script>
             function onLoad() {
-                new poker.Main();
+                const facade = new poker.Main();
+                new server.Server(facade, 5000);
             }
         </script>
     </head>

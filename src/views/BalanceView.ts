@@ -49,7 +49,7 @@ namespace views {
 
         public changeBalance(balance: number): void {
             this._balanceAmount = balance;
-            this._balanceLabel.text = this._balanceAmount.toString();
+            this._balanceAmountText.text = this._balanceAmount.toString();
         }
     }
 }

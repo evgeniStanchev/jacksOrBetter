@@ -53,7 +53,7 @@ namespace controllers {
             //
             const card = e.target as Card;
 
-            this.gameModel.facade.requestDraw();
+            this.gameModel.facade.requestDraw(200);
 
             if (this.gameModel.balance > 0) {
                 card.hold();
