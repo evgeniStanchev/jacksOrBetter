@@ -3,6 +3,8 @@
 ///<reference path="../views/BetButton.ts"/>
 ///<reference path="../models/GameModel.ts"/>
 ///<reference path="../types/action.ts"/>
+///<reference path="../types/listening.ts"/>
+///<reference path="../types/state.ts"/>
 
 namespace controllers {
     import Notification = poker.Notifications;
@@ -10,15 +12,16 @@ namespace controllers {
     import BetButton = views.BetButton;
     import GameModel = model.GameModel;
     import Action = poker.action;
+    import state = poker.state;
+    import listening = poker.listening;
 
     export class ButtonsController extends Pluck.ViewController {
-
         private _currentAction: Action;
 
         constructor() {
-            super(new BetButtonsView());
+            super(new BetButtonsView([1, 2, 3, 5, 10]));
             this._currentAction = "deal clicked";
-            this._view.on("buttonClicked", this.onButtonClicked, this);
+            this.listening("on");
         }
 
         public get view(): BetButtonsView {
@@ -30,52 +33,115 @@ namespace controllers {
         }
 
         public getInterests(): string[] {
-            return [Notification.DEAL_SUCCESSFUL];
+            return [Notification.DEAL_SUCCESSFUL, Notification.SPIN_ENDED];
         }
 
         public handleNotification(notification: Pluck.Notification): void {
             switch (notification.name) {
                 case Notification.DEAL_SUCCESSFUL: {
-                    console.log("Deal ? ")
+                    console.log("Deal ? ");
                     this._currentAction = "draw clicked";
-                    this._view.updateAction("Draw");
+                    this.updateActionLabel("Draw");
                     // this._view.
                     break;
                 }
-            }
-        }
-
-        private onButtonClicked(selectedButton :BetButton): void{
-            switch(this._currentAction){
-                case("draw clicked"):{
-                    this.onButtonDrawClicked();
-                    break;
-                }
-                case("deal clicked"):{
-                    this.onButtonDealClicked(selectedButton);
-                    break;
-                }
-                case("collect clicked"):{
-                    this.onButtonCollectClicked();
+                case Notification.SPIN_ENDED: {
+                    this._currentAction = "deal clicked";
+                    this.updateActionLabel("Deal");
                     break;
                 }
             }
         }
 
-        private onButtonDrawClicked(): void {
-            console.log("sending notification:", Notification.BUTTON_CLICK_DRAW);
-            this.sendNotification(Notification.BUTTON_CLICK_DRAW);
+        private onButtonClicked(e: PIXI.interaction.InteractionEvent): void {
+            const selectedButton = e.target as BetButton;
+            switch (this._currentAction) {
+                case "deal clicked": {
+                    this.gameModel.facade.requestDeal(selectedButton.betValue);
+                    this.sendNotification(Notification.BUTTON_CLICK_DEAL);
+                    break;
+                }
+                case "draw clicked": {
+                    this.sendNotification(Notification.BUTTON_CLICK_DRAW);
+                    break;
+                }
+                case "collect clicked": {
+                    this.sendNotification(Notification.BUTTON_CLICK_COLLECT);
+                    break;
+                }
+            }
         }
 
-        private onButtonDealClicked(selectedButton: BetButton): void {
-            this.gameModel.facade.requestDraw(selectedButton.betValue);
-            console.log("sending notification:", Notification.BUTTON_CLICK_DEAL);
-            this.sendNotification(Notification.BUTTON_CLICK_DEAL);
+        private listening(method: listening): void {
+            for (const button of this._view.buttons) {
+                button[method]("buttonSelected", this.selectButton, this);
+                button[method]("click", this.onButtonClicked, this);
+            }
         }
 
-        private onButtonCollectClicked(): void {
-            console.log("sending notification:", Notification.BUTTON_CLICK_COLLECT);
-            this.sendNotification(Notification.BUTTON_CLICK_COLLECT);
+        private selectButton(buttonIndex: number): void {
+            for (const button of this._view.buttons) {
+                if (this._view.buttons.indexOf(button) == buttonIndex) {
+                    button.selectButton();
+                } else {
+                    if (button.isSelected) {
+                        button.deselectButton();
+                    }
+                }
+            }
         }
+
+        public updateActionLabel(newLabel: state) {
+            for (const button of this._view.buttons) {
+                if (!button.isMaxBet) {
+                    button.actionLabelText = newLabel;
+                }
+            }
+        }
+
+        // private collect(): void {
+        //     let animatedPrice = 0;
+        //     const collecting = setInterval(() => {
+        //         if (this._isCollectingStopped) {
+        //             console.log(this._currentPrice);
+        //             this.resetVariables();
+        //             clearInterval(collecting);
+        //             this.updateActionLabel(this._actionLabelDeal);
+        //             //TODO this is not the right place
+        //             this._currentAction = "deal clicked";
+        //             this.emit("end");
+        //         } else if (animatedPrice == this._currentPrice) {
+        //             this.resetVariables();
+        //             clearInterval(collecting);
+        //             this.updateActionLabel(this._actionLabelDeal);
+        //             //TODO this is not the right place
+        //             this._currentAction = "deal clicked";
+        //             this.emit("end");
+        //         } else {
+        //             animatedPrice += 5;
+        //             console.log(animatedPrice);
+        //         }
+        //     }, 100);
+        // }
+
+        // private resetVariables(): void {
+        //     this._currentPrice = 0;
+        //     this._isCollectingStopped = false;
+        // }
+
+        // if (this.isWin()) {
+        //     this.emit(this._currentAction);
+        //     this.updateActionLabel(this._actionLabelCollect);
+        //     this.collect();
+        //     this._currentAction = "collect";
+        // } else {
+        //     this.emit(this._currentAction);
+        //     this.updateActionLabel(this._actionLabelDeal);
+        //     this._currentAction = "deal";
+        // }
+
+        // private stopCollecting() {
+        //     this._isCollectingStopped = true;
+        // }
     }
 }

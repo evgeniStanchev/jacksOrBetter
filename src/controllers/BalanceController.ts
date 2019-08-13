@@ -29,9 +29,6 @@ namespace controllers {
                     this._view.changeBalance(this._mModel.balance);
                     break;
                 }
-                // case Notification.END: {
-                //     break;
-                // }
             }
         }
     }

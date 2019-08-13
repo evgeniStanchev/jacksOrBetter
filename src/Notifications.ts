@@ -9,6 +9,6 @@ namespace poker {
         static DEAL_SUCCESSFUL = "dealSuccess";
         static CURRENCY_CHANGED = "currencyChanged";
         static BALANCE_UPDATED = "balance is updated";
+        static SPIN_ENDED = "current spin ended";
     }
 }
-

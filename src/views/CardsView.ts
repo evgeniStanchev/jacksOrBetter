@@ -23,16 +23,61 @@ namespace views {
             return this._cards;
         }
 
-        set revealSpeed(val: number) {
+        public set revealSpeed(val: number) {
             this._speed = val;
         }
 
+        public revealCards(): void {
+            for (const card of this._cards) {
+                if (!card.isHeld) {
+                    setTimeout(() => {
+                        card.reveal();
+                    }, 100 * this.cards.indexOf(card));
+                }
+            }
+        }
+
+        public hideCards(): void {
+            for (const card of this._cards) {
+                if(!card.isHeld){
+                card.hide();
+            }
+            }
+        }
+
+        public startInteractivity():void{
+            for (const card of this._cards) {
+                card.interactive = true;
+            }
+        }
+
+        public stopInteractivity():void{
+            for (const card of this._cards) {
+                card.interactive = false;
+            }
+        }
+
+        public holdCard(index: number): void {
+            this._cards[index].hold();
+        }
+
+        public releaseCard(index: number): void {
+            this._cards[index].release();
+        }
+
+        public releaseAllCards(): void {
+            for (const card of this._cards) {
+                card.release();
+            }
+        }
+
         public setNewRanksAndSuits(): void {
-            for (const currentCard of this._cards) {
-                do {
-                    currentCard.setSuitAndRank(this.getRandomRank(), this.getRandomSuit());
-                    console.log(currentCard.rank, currentCard.suit);
-                } while (this.cardExists(currentCard));
+            for (const card of this._cards) {
+                if (!card.isHeld) {
+                    do {
+                        card.setSuitAndRank(this.getRandomRank(), this.getRandomSuit());
+                    } while (this.cardExists(card));
+                }
             }
         }
         private createNewCards(): void {
@@ -41,6 +86,7 @@ namespace views {
                 newCard.x = this._x;
                 newCard.x += index * (newCard.width + CardsView.DISTANCE_BETWEEN);
                 newCard.y = this._y;
+                newCard.buttonMode= true;
                 this._cards.push(newCard);
                 this.addChild(newCard);
             }
@@ -48,43 +94,11 @@ namespace views {
 
         private cardExists(card: Card): boolean {
             for (const currentCard of this._cards) {
-                if (card.rank == currentCard.rank && card.suit == currentCard.suit && card != currentCard) {
-                    console.log(card, this.cards);
+                if (currentCard.rank == card.rank && currentCard.suit == card.suit && currentCard != card) {
                     return true;
                 }
             }
             return false;
-        }
-
-        revealCards(): void {
-            for (let index = 0; index < this._cards.length; index++) {
-                if (!this._cards[index].isHeld) {
-                    setTimeout(() => {
-                        this._cards[index].reveal();
-                    }, 100 * index);
-                    console.log(this._cards.length);
-                }
-            }
-        }
-
-        hideCards(): void {
-            for (let index = 0; index < this._cards.length; index++) {
-                this._cards[index].hide();
-            }
-        }
-
-        holdCard(index: number): void {
-            this._cards[index].hold();
-        }
-
-        releaseCard(index: number): void {
-            this._cards[index].release();
-        }
-
-        releaseAllCards(): void {
-            this._cards.forEach(card => {
-                card.release();
-            });
         }
 
         //TODO alternative

@@ -45,12 +45,17 @@ namespace model {
             // this._cards = val.cards;
 
             switch (val.action) {
-                case "draw": {
+                case "Deal": {
                     this.sendNotification(Notification.DEAL_SUCCESSFUL);
                     break;
                 }
                 case "setBalance": {
                     this.sendNotification(Notification.BALANCE_UPDATED);
+                    break;
+                }
+                case "end the game": {
+                    this.sendNotification(Notification.SPIN_ENDED);
+                    break;
                 }
             }
         }

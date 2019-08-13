@@ -9,7 +9,6 @@ namespace controllers {
     export class CardsController extends Pluck.ViewController {
         constructor() {
             super(new CardsView());
-
             // for (const card of this.view.cards) {
             //     card.on("click", this.onCardClick, this);
             // }
@@ -17,35 +16,48 @@ namespace controllers {
             // console.log(mModel);
         }
 
-        getInterests(): string[] {
+        public getInterests(): string[] {
             return [
                 Notification.BUTTON_CLICK_DEAL,
                 Notification.BUTTON_CLICK_DRAW,
                 Notification.BUTTON_CLICK_COLLECT,
-                // Notification.END,
+                Notification.DEAL_SUCCESSFUL,
             ];
         }
 
-        handleNotification(notification: Pluck.Notification): void {
+        public handleNotification(notification: Pluck.Notification): void {
             console.log("Notification received: " + notification.name);
             switch (notification.name) {
-                case Notification.BUTTON_CLICK_DEAL: {
+                case Notification.DEAL_SUCCESSFUL: {
                     this.view.hideCards();
                     this.view.setNewRanksAndSuits();
                     this.view.revealCards();
+                    this.view.startInteractivity();
                     break;
                 }
-                // case Notification.END: {
-                //     break;
-                // }
+                case Notification.BUTTON_CLICK_DRAW: {
+                    this.view.hideCards();
+                    this.view.setNewRanksAndSuits();
+                    this.view.revealCards();
+                    this.view.stopInteractivity();
+                    this.view.releaseAllCards();
+                    if (true) {
+                        this.gameModel.facade.endTheSpin();
+                    } else {
+                        //
+                    }
+                    break;
+                }
             }
         }
 
-        get view(): CardsView {
+
+
+        public get view(): CardsView {
             return this._view;
         }
 
-        get gameModel(): GameModel {
+        public get gameModel(): GameModel {
             return (Pluck.ViewController.root as any)._model;
         }
 
@@ -53,7 +65,7 @@ namespace controllers {
             //
             const card = e.target as Card;
 
-            this.gameModel.facade.requestDraw(200);
+            this.gameModel.facade.requestDeal(200);
 
             if (this.gameModel.balance > 0) {
                 card.hold();

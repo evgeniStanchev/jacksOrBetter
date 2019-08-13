@@ -33,7 +33,6 @@ namespace controllers {
         private _winController: WinController;
         private _infoController: InfoController;
         private _gambleButtonController: GambleButtonController;
-        private _facade: Main;
 
         constructor(facade: Main) {
             super(new GameView(), new GameModel());

@@ -10,8 +10,9 @@ namespace poker {
         private readonly _res: Resources;
         private _rootController: GameController;
 
-        private readonly _requestDraw = "requestDraw";
+        private readonly _requestDeal = "requestDeal";
         private readonly _requestCollect = "requestCollect";
+        private readonly _endTheSpin = "endTheSpin";
 
         constructor() {
             super();
@@ -19,7 +20,7 @@ namespace poker {
             this._res.load();
             this._res.on(Notification.RESOURCES_LOADED, this.onResourcesLoaded, this);
         }
-        
+
         public set data(val: { action: string; amount: number }) {
             this._rootController.data = val;
         }
@@ -31,12 +32,14 @@ namespace poker {
             this.emit("resources loaded");
         }
 
-        public changeState(): void {}
-
-        public requestDraw(bet: number): void {
-            this.emit(this._requestDraw, {
+        public requestDeal(bet: number): void {
+            this.emit(this._requestDeal, {
                 bet: bet,
             });
+        }
+
+        public endTheSpin(): void {
+            this.emit(this._endTheSpin);
         }
 
         public requestCollect(amount: number): void {
@@ -44,6 +47,5 @@ namespace poker {
                 amount: amount,
             });
         }
-
     }
 }

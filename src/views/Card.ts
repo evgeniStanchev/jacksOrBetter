@@ -27,6 +27,7 @@ namespace views {
             super();
             this.init();
             this.texture = this._backTexture;
+            this.on("pointerdown", this.onClick);
         }
 
         public setSuitAndRank(rank: Rank, suit: Suit) {
@@ -43,12 +44,17 @@ namespace views {
             return this._suit;
         }
 
+
+
         private init() {
             this._backTexture = PIXI.Texture.from("cardBackBlack");
             this._faceTexture = PIXI.Texture.from("cleanCard");
             this._heldLabel = PIXI.Sprite.from("heldLabel");
+            this._heldLabel.x = (this._faceTexture.width - this._heldLabel.width)/2 + 5;
+            this._heldLabel.y = 5;
             this._winLabel = PIXI.Sprite.from("winLabel");
-
+            this._winLabel.x = (this._faceTexture.width - this._winLabel.width)/2 + 5;
+            this._winLabel.y = 5;
             this._isHeld = false;
         }
 
@@ -71,6 +77,14 @@ namespace views {
             this._rankLabel.y = 3;
 
             this.addSpecificSprite();
+        }
+        
+        private onClick():void{
+            if(!this.isHeld){
+            this.hold();
+        }else{
+            this.release();
+        }
         }
 
         private addSpecificSprite(): void {
@@ -102,7 +116,7 @@ namespace views {
             return this._isHeld;
         }
 
-        reveal(): void {
+        public reveal(): void {
             if (!this._isHeld) {
                 this.texture = this._faceTexture;
                 this.addChild(this._suitLabel);
@@ -113,22 +127,22 @@ namespace views {
             }
         }
 
-        hide(): void {
+        public hide(): void {
             this._specificSprite = null;
             this.removeChildren();
             this.texture = this._backTexture;
         }
 
-        hold(): void {
+        public hold(): void {
             this._isHeld = true;
             this.addChild(this._heldLabel);
         }
 
-        win(): void {
+        public win(): void {
             this.addChild(this._winLabel);
         }
 
-        release(): void {
+        public release(): void {
             this._isHeld = false;
             this.removeChild(this._heldLabel);
         }
