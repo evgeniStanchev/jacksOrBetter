@@ -25,7 +25,7 @@ namespace views {
         private readonly _betValueLabelY = 13;
         private readonly _betValueLabelSize = 35;
 
-        constructor(betValue: number, index: number, actionLabel: string, isMaxBet) {
+        constructor(betValue: number, index: number, actionLabel: string, isMaxBet: boolean) {
             super();
             this.texture = this._inactiveTexture;
             this.buttonMode = true;

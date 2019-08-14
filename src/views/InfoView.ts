@@ -5,8 +5,7 @@ namespace views {
         private readonly _width = 465;
         private readonly _height = 30;
         private readonly _radius = 10;
-        private _actionText : PIXI.Text;
-
+        private _actionText: PIXI.Text;
 
         constructor() {
             super();
@@ -14,14 +13,14 @@ namespace views {
             this.setTexts();
         }
 
-        private setTexts():void{
+        private setTexts(): void {
             this._actionText = new PIXI.Text("PRESS DEAL TO RUN NEW GAME", {
-                fontSize : 15,
+                fontSize: 15,
                 fontWeight: "bolder",
-                fill: 0xFFFFFF
+                fill: 0xffffff,
             });
-            this._actionText.x = this._x + (this._width - this._actionText.width)/2;
-            this._actionText.y = this._y + (this._height - this._actionText.height)/2;
+            this._actionText.x = this._x + (this._width - this._actionText.width) / 2;
+            this._actionText.y = this._y + (this._height - this._actionText.height) / 2;
             this.addChild(this._actionText);
         }
 

@@ -8,6 +8,8 @@
 ///<reference path="./GambleButtonController.ts"/>
 ///<reference path="./InfoController.ts"/>
 ///<reference path="../Main.ts"/>
+///<reference path="../views/Card.ts"/>
+///<reference path="../types/state.ts"/>
 
 namespace controllers {
     import GameView = views.GameView;
@@ -16,6 +18,8 @@ namespace controllers {
     import WinController = controllers.WinController;
     import InfoController = controllers.InfoController;
     import Main = poker.Main;
+    import Card = views.Card;
+    import state = poker.state;
 
     import GambleButtonController = controllers.GambleButtonController;
     import CardsController = controllers.CardsController;
@@ -40,7 +44,7 @@ namespace controllers {
             this.init();
         }
 
-        set data(val) {
+        set data(val: { state?: state; balance?: number; cards?: Card[] }) {
             this.mModel.data = val;
         }
 

@@ -7,6 +7,7 @@ namespace poker {
         static PLAYER_WON = "player won";
         static PLAYER_LOST = "player lost";
         static DEAL_SUCCESSFUL = "dealSuccess";
+        static DRAW_SUCCESSFUL = "drawSuccess";
         static CURRENCY_CHANGED = "currencyChanged";
         static BALANCE_UPDATED = "balance is updated";
         static SPIN_ENDED = "current spin ended";

@@ -1,3 +1,3 @@
 namespace poker {
-    export type state = "Draw" | "Deal" | "Collect";
+    export type state = "Init" | "Draw" | "Deal" | "Collect" | "SpinEnd";
 }

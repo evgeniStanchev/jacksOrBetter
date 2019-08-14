@@ -9,19 +9,14 @@ namespace controllers {
     export class CardsController extends Pluck.ViewController {
         constructor() {
             super(new CardsView());
-            // for (const card of this.view.cards) {
-            //     card.on("click", this.onCardClick, this);
-            // }
-            // const mModel = this.gameModel;
-            // console.log(mModel);
         }
 
         public getInterests(): string[] {
             return [
-                Notification.BUTTON_CLICK_DEAL,
                 Notification.BUTTON_CLICK_DRAW,
                 Notification.BUTTON_CLICK_COLLECT,
                 Notification.DEAL_SUCCESSFUL,
+                Notification.DRAW_SUCCESSFUL,
             ];
         }
 
@@ -30,28 +25,25 @@ namespace controllers {
             switch (notification.name) {
                 case Notification.DEAL_SUCCESSFUL: {
                     this.view.hideCards();
-                    this.view.setNewRanksAndSuits();
+                    this.view.setCardsRanksAndSuits(this.gameModel.cards);
                     this.view.revealCards();
                     this.view.startInteractivity();
                     break;
                 }
+                case Notification.DRAW_SUCCESSFUL: {
+                    this.view.hideCards();
+                    this.view.setCardsRanksAndSuits(this.gameModel.cards);
+                    this.view.revealCards();
+                       this.view.stopInteractivity();
+                    this.view.releaseAllCards();
+                    break;
+                }
                 case Notification.BUTTON_CLICK_DRAW: {
                     this.view.hideCards();
-                    this.view.setNewRanksAndSuits();
-                    this.view.revealCards();
-                    this.view.stopInteractivity();
-                    this.view.releaseAllCards();
-                    if (true) {
-                        this.gameModel.facade.endTheSpin();
-                    } else {
-                        //
-                    }
-                    break;
+                    this.gameModel.facade.requestDraw(this.view.getUnholdedCardIndexes());
                 }
             }
         }
-
-
 
         public get view(): CardsView {
             return this._view;

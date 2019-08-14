@@ -26,7 +26,6 @@ namespace controllers {
                     break;
                 }
                 case Notification.DEAL_SUCCESSFUL: {
-                    this._view.changeBalance(this._mModel.balance);
                     break;
                 }
             }
