@@ -1,15 +1,11 @@
 ///<reference path="../types/state.ts"/>
 ///<reference path="../Main.ts"/>
-///<reference path="../types/suit.ts"/>
-///<reference path="../types/rank.ts"/>
-///<reference path="../views/Card.ts"/>
+///<reference path="../server/CardsUtils.ts"/>
 
 namespace server {
     import Main = poker.Main;
     import state = poker.state;
-    import Suit = poker.suit;
-    import Rank = poker.rank;
-    import Card = views.Card;
+    import CardsUtils = server.CardsUtils;
 
     export class Server {
         private readonly _requestDeal = "requestDeal";
@@ -20,10 +16,12 @@ namespace server {
         private readonly _facade: Main;
         private _state: state;
         private _balance: number;
-        private _cards: Card[];
+        private _cards: number[];
+        private _winCardsIndexes: number[];
 
         constructor(facade: Main, balance: number) {
             this._cards = [];
+            this._winCardsIndexes = [];
             this._balance = balance;
             this._facade = facade;
             this._state = "Deal";
@@ -69,6 +67,12 @@ namespace server {
 
         private requestCollect(amount: number) {
             if (this._state == "Draw") {
+                if (CardsUtils.hasWin(this._cards)) {
+                    this._facade.data = {
+                        state: this._state,
+                        cards: this._cards,
+                    };
+                }
                 this._balance += amount;
                 this._state = "Collect";
                 console.log("Collecting ended successfully");
@@ -90,9 +94,9 @@ namespace server {
 
         private setRandomCards(indexes: number[]): void {
             for (const index of indexes) {
-                const card = new Card();
+                let card: number;
                 do {
-                    card.setSuitAndRank(this.getRandomRank(), this.getRandomSuit());
+                    card = Math.floor(Math.random() * 52);
                 } while (this.cardExists(card));
                 this._cards[index] = card;
             }
@@ -109,78 +113,13 @@ namespace server {
             this._state = newState;
         }
 
-        private cardExists(card: Card): boolean {
+        private cardExists(card: number): boolean {
             for (const currentCard of this._cards) {
-                if (currentCard.rank == card.rank && currentCard.suit == card.suit && currentCard != card) {
+                if (currentCard == card) {
                     return true;
                 }
             }
             return false;
-        }
-
-        //TODO alternative
-        private getRandomRank(): Rank {
-            const num = Math.floor((Math.random() * 20) % 13) + 2;
-            console.log(num);
-            switch (num) {
-                case 2: {
-                    return "2";
-                }
-                case 3: {
-                    return "3";
-                }
-                case 4: {
-                    return "4";
-                }
-                case 5: {
-                    return "5";
-                }
-                case 6: {
-                    return "6";
-                }
-                case 7: {
-                    return "7";
-                }
-                case 8: {
-                    return "8";
-                }
-                case 9: {
-                    return "9";
-                }
-                case 10: {
-                    return "10";
-                }
-                case 11: {
-                    return "J";
-                }
-                case 12: {
-                    return "Q";
-                }
-                case 13: {
-                    return "K";
-                }
-                case 14: {
-                    return "A";
-                }
-            }
-        }
-        //TODO alternative
-        private getRandomSuit(): Suit {
-            const num = Math.floor(Math.random() * 10) % 4;
-            switch (num) {
-                case 0: {
-                    return "C";
-                }
-                case 1: {
-                    return "D";
-                }
-                case 2: {
-                    return "H";
-                }
-                case 3: {
-                    return "S";
-                }
-            }
         }
     }
 }

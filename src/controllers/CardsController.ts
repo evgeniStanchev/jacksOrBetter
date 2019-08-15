@@ -34,8 +34,9 @@ namespace controllers {
                     this.view.hideCards();
                     this.view.setCardsRanksAndSuits(this.gameModel.cards);
                     this.view.revealCards();
-                       this.view.stopInteractivity();
+                    this.view.stopInteractivity();
                     this.view.releaseAllCards();
+                    
                     break;
                 }
                 case Notification.BUTTON_CLICK_DRAW: {

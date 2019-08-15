@@ -39,7 +39,7 @@ namespace controllers {
         public handleNotification(notification: Pluck.Notification): void {
             switch (notification.name) {
                 case Notification.DEAL_SUCCESSFUL: {
-                    console.log("Deal ? ");
+                    console.log("Deal?");
                     this._currentAction = "draw clicked";
                     this.updateActionLabel("Draw");
                     // this._view.
@@ -98,50 +98,5 @@ namespace controllers {
                 }
             }
         }
-
-        // private collect(): void {
-        //     let animatedPrice = 0;
-        //     const collecting = setInterval(() => {
-        //         if (this._isCollectingStopped) {
-        //             console.log(this._currentPrice);
-        //             this.resetVariables();
-        //             clearInterval(collecting);
-        //             this.updateActionLabel(this._actionLabelDeal);
-        //             //TODO this is not the right place
-        //             this._currentAction = "deal clicked";
-        //             this.emit("end");
-        //         } else if (animatedPrice == this._currentPrice) {
-        //             this.resetVariables();
-        //             clearInterval(collecting);
-        //             this.updateActionLabel(this._actionLabelDeal);
-        //             //TODO this is not the right place
-        //             this._currentAction = "deal clicked";
-        //             this.emit("end");
-        //         } else {
-        //             animatedPrice += 5;
-        //             console.log(animatedPrice);
-        //         }
-        //     }, 100);
-        // }
-
-        // private resetVariables(): void {
-        //     this._currentPrice = 0;
-        //     this._isCollectingStopped = false;
-        // }
-
-        // if (this.isWin()) {
-        //     this.emit(this._currentAction);
-        //     this.updateActionLabel(this._actionLabelCollect);
-        //     this.collect();
-        //     this._currentAction = "collect";
-        // } else {
-        //     this.emit(this._currentAction);
-        //     this.updateActionLabel(this._actionLabelDeal);
-        //     this._currentAction = "deal";
-        // }
-
-        // private stopCollecting() {
-        //     this._isCollectingStopped = true;
-        // }
     }
 }

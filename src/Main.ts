@@ -1,12 +1,10 @@
 ///<reference path="./controllers/GameController.ts"/>
 ///<reference path="models/Resources.ts"/>
 ///<reference path="Notifications.ts"/>
-///<reference path="./views/Card.ts"/>
 namespace poker {
     import GameController = controllers.GameController;
     import Resources = model.Resources;
     import Notification = poker.Notifications;
-    import Card = views.Card;
 
     export class Main extends PIXI.utils.EventEmitter {
         private readonly _res: Resources;
@@ -23,7 +21,7 @@ namespace poker {
             this._res.on(Notification.RESOURCES_LOADED, this.onResourcesLoaded, this);
         }
 
-        set data(val: { state?: state; balance?: number; cards?: Card[] }) {
+        set data(val: { state?: state; balance?: number; cards?: number[]; winCardsIndexes?: number[] }) {
             this._rootController.data = val;
         }
 

@@ -37,10 +37,10 @@ namespace views {
             this._speed = val;
         }
 
-        public setCardsRanksAndSuits(v: Card[]): void {
+        public setCardsRanksAndSuits(v: number[]): void {
             console.log(v);
             for (let index = 0; index < v.length; index++) {
-                this._cards[index].setSuitAndRank(v[index].rank, v[index].suit);
+                this._cards[index].setSuitAndRank(this.getRank(v[index]), this.getSuit(v[index]));
             }
         }
 
@@ -100,56 +100,54 @@ namespace views {
             }
         }
 
-        //TODO alternative
-        private getRandomRank(): Rank {
-            const num = Math.floor((Math.random() * 20) % 13) + 2;
-            switch (num) {
-                case 2: {
+        private getRank(card: number): Rank {
+            const rank = card % 13;
+            switch (rank) {
+                case 0: {
+                    return "A";
+                }
+                case 1: {
                     return "2";
                 }
-                case 3: {
+                case 2: {
                     return "3";
                 }
-                case 4: {
+                case 3: {
                     return "4";
                 }
-                case 5: {
+                case 4: {
                     return "5";
                 }
-                case 6: {
+                case 5: {
                     return "6";
                 }
-                case 7: {
+                case 6: {
                     return "7";
                 }
-                case 8: {
+                case 7: {
                     return "8";
                 }
-                case 9: {
+                case 8: {
                     return "9";
                 }
-                case 10: {
+                case 9: {
                     return "10";
                 }
-                case 11: {
+                case 10: {
                     return "J";
                 }
-                case 12: {
+                case 11: {
                     return "Q";
                 }
-                case 13: {
+                case 12: {
                     return "K";
-                }
-                case 14: {
-                    return "A";
                 }
             }
         }
 
-        //TODO alternative
-        private getRandomSuit(): Suit {
-            const num = Math.floor(Math.random() * 10) % 4;
-            switch (num) {
+        private getSuit(card: number): Suit {
+            const suit = Math.floor(card / 13);
+            switch (suit) {
                 case 0: {
                     return "C";
                 }
