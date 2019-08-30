@@ -12,9 +12,8 @@ namespace views {
 
         private _balanceAmount: number;
 
-        constructor(balanceAmount: number) {
+        constructor() {
             super();
-            this._balanceAmount = balanceAmount;
             this.drawFigure();
             this._balanceLabel = new PIXI.Text("BALANCE", {
                 fill: 0x015d8a,
@@ -24,11 +23,8 @@ namespace views {
             this.insertTexts();
         }
 
-        private insertTexts(): void {
-            this._balanceLabel.x = this._x + (this._width - this._balanceLabel.width) / 2;
-            this._balanceLabel.y = this._y - 5;
-            this.addChild(this._balanceLabel);
-
+        public initializeBalance(balance: number){
+            this._balanceAmount = balance;
             this._balanceAmountText = new PIXI.Text(this._balanceAmount.toString(), {
                 fill: 0xffffff,
                 fontSize: 30,
@@ -38,6 +34,12 @@ namespace views {
             this._balanceAmountText.y = this._y + (this._height - this._balanceAmountText.height) / 2;
 
             this.addChild(this._balanceAmountText);
+        }
+
+        public insertTexts(): void {
+            this._balanceLabel.x = this._x + (this._width - this._balanceLabel.width) / 2;
+            this._balanceLabel.y = this._y - 5;
+            this.addChild(this._balanceLabel);
         }
 
         private drawFigure(): void {

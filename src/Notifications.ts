@@ -1,5 +1,6 @@
 namespace poker {
     export class Notifications {
+        static COLLECTING = "collecting";
         static RESOURCES_LOADED = "resourcesLoaded";
         static BUTTON_CLICK_DRAW = "draw button clicked";
         static BUTTON_CLICK_DEAL = "deal button clicked";
@@ -9,7 +10,7 @@ namespace poker {
         static DEAL_SUCCESSFUL = "dealSuccess";
         static DRAW_SUCCESSFUL = "drawSuccess";
         static CURRENCY_CHANGED = "currencyChanged";
-        static BALANCE_UPDATED = "balance is updated";
         static SPIN_ENDED = "current spin ended";
+        static BALANCE_INIT = "balance was initialized";
     }
 }

@@ -11,7 +11,6 @@ namespace server {
         private readonly _requestDeal = "requestDeal";
         private readonly _requestDraw = "requestDraw";
         private readonly _requestCollect = "requestCollect";
-        private readonly _requestRestart = "requestRestart";
         private readonly _resourceLoaded = "resources loaded";
         private readonly _facade: Main;
         private _state: state;
@@ -24,11 +23,10 @@ namespace server {
             this._winCardsIndexes = [];
             this._balance = balance;
             this._facade = facade;
-            this._state = "Deal";
+            this._state = "Init";
             this._facade.on(this._requestDeal, this.requestDeal, this);
             this._facade.on(this._requestDraw, this.requestDraw, this);
             this._facade.on(this._requestCollect, this.requestCollect, this);
-            this._facade.on(this._requestRestart, this.requestRestart, this);
             this._facade.on(this._resourceLoaded, this.setBalance, this);
         }
 
@@ -59,37 +57,35 @@ namespace server {
                     state: this._state,
                     cards: this._cards,
                 };
+                this._state = "Collect";
             } else {
                 console.log("You cannot draw if your state is not Draw");
             }
             console.log("SERVER: Draw was successfull.");
+          
         }
 
-        private requestCollect(amount: number) {
-            if (this._state == "Draw") {
-                if (CardsUtils.hasWin(this._cards)) {
-                    this._facade.data = {
-                        state: this._state,
-                        cards: this._cards,
-                    };
-                }
-                this._balance += amount;
-                this._state = "Collect";
-                console.log("Collecting ended successfully");
+        private requestCollect() {
+            if (this._state == "Collect") {
+                const winAmount = this.getWinAmount();
+                this._balance += winAmount;
+                this._facade.data = {
+                    state: this._state,
+                    balance: this._balance,
+                };
             } else {
                 console.error("To Collect You must be in Collect state. Your state now is " + this._state);
             }
+            console.log("Collecting ended successfully");
+            this._state = "Deal";
         }
 
-        private requestRestart(): void {
-            // if (this._state == "Deal") {
-            //     console.error("You cannot end the spin in Deal state");
-            // } else {
-            //     this._facade.data = {
-            //         state: this._state,
-            //     };
-            //     this.changeState("Deal");
-            // }
+        private getWinAmount(): number {
+            if (CardsUtils.hasWin(this._cards)) {
+                return 0;
+            } else {
+                return 0;
+            }
         }
 
         private setRandomCards(indexes: number[]): void {
@@ -104,9 +100,11 @@ namespace server {
 
         private setBalance(): void {
             const data = {
+                state: this._state,
                 balance: this._balance,
             };
             this._facade.data = data;
+            this._state = "Deal";
         }
 
         private changeState(newState: state) {

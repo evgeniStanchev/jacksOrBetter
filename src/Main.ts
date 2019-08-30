@@ -12,6 +12,7 @@ namespace poker {
         private readonly _requestDraw = "requestDraw";
         private readonly _requestCollect = "requestCollect";
         private readonly _requestRestart = "requestRestart";
+
         private _rootController: GameController;
 
         constructor() {
@@ -38,21 +39,17 @@ namespace poker {
             });
         }
 
-        public requestDraw(indexes: number[]):void{
-            console.log(indexes)
-            this.emit(this._requestDraw, 
-              indexes
-            );
+        public requestDraw(indexes: number[]): void {
+            console.log(indexes);
+            this.emit(this._requestDraw, indexes);
         }
 
         public requestRestart(): void {
             this.emit(this._requestRestart);
         }
 
-        public requestCollect(amount: number): void {
-            this.emit(this._requestCollect, {
-                amount: amount,
-            });
+        public requestCollect(): void {
+            this.emit(this._requestCollect);
         }
     }
 }

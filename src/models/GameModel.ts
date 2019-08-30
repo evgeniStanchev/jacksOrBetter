@@ -42,31 +42,29 @@ namespace model {
             this.sendNotification(Notification.CURRENCY_CHANGED);
         }
 
-        set data(val: { state?: state; balance?: number; cards?: number[];winCardsIndexes?: number[] }) {
+        set data(val: { state?: state; balance?: number; cards?: number[]; winCardsIndexes?: number[] }) {
             this._balance = val.balance;
             this._cards = val.cards;
             this._state = val.state;
+            
 
             switch (val.state) {
+                case ("Init"):{
+                    this.sendNotification(Notification.BALANCE_INIT);
+                    break;
+                }
                 case ("Deal"): {
                     this.sendNotification(Notification.DEAL_SUCCESSFUL);
                     break;
                 }
-                
                 case("Draw"):{
                     this.sendNotification(Notification.DRAW_SUCCESSFUL);
-                    this._facade.requestRestart();
                     break;
                 }
-
-                case "SpinEnd": {
-                    this.sendNotification(Notification.SPIN_ENDED);
+                case "Collect": {
+                    this.sendNotification(Notification.COLLECTING);
                     break;
                 } 
-                default:{
-                    this.sendNotification(Notification.BALANCE_UPDATED);
-                    break;
-                }
             }
         }
     }

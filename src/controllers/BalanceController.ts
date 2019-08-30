@@ -11,23 +11,26 @@ namespace controllers {
 
         constructor(mModel: GameModel) {
             //TODO balance must be received from server
-            super(new BalanceView(300));
+            super(new BalanceView());
             this._mModel = mModel;
         }
 
         getInterests(): string[] {
-            return [Notification.BALANCE_UPDATED, Notification.DEAL_SUCCESSFUL];
+            return [Notification.DEAL_SUCCESSFUL, Notification.BALANCE_INIT, Notification.COLLECTING];
         }
 
         handleNotification(notification: Pluck.Notification): void {
+            console.log("Notification received: " + notification.name);
             switch (notification.name) {
-                case Notification.BALANCE_UPDATED: {
-                    this._view.changeBalance(this._mModel.balance);
+                case Notification.BALANCE_INIT: {
+                    this._view.initializeBalance(this._mModel.balance);
                     break;
                 }
                 case Notification.DEAL_SUCCESSFUL: {
+                    this._view.changeBalance(this._mModel.balance);
                     break;
                 }
+               
             }
         }
     }

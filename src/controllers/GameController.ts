@@ -41,7 +41,7 @@ namespace controllers {
             this.init();
         }
 
-        set data(val: { state?: state; balance?: number; cards?: number[];winCardsIndexes?: number[] }) {
+        set data(val: { state?: state; balance?: number; cards?: number[]; winCardsIndexes?: number[] }) {
             this.mModel.data = val;
         }
 

@@ -36,7 +36,7 @@ namespace controllers {
                     this.view.revealCards();
                     this.view.stopInteractivity();
                     this.view.releaseAllCards();
-                    
+                    this.gameModel.facade.requestCollect();
                     break;
                 }
                 case Notification.BUTTON_CLICK_DRAW: {

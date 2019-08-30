@@ -39,7 +39,6 @@ namespace controllers {
         public handleNotification(notification: Pluck.Notification): void {
             switch (notification.name) {
                 case Notification.DEAL_SUCCESSFUL: {
-                    console.log("Deal?");
                     this._currentAction = "draw clicked";
                     this.updateActionLabel("Draw");
                     // this._view.
