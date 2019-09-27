@@ -12,11 +12,13 @@ namespace server {
         private readonly _requestDraw = "requestDraw";
         private readonly _requestCollect = "requestCollect";
         private readonly _resourceLoaded = "resources loaded";
+        private readonly _prices = new Map<combination, number>();
         private readonly _facade: Main;
         private _state: state;
         private _balance: number;
         private _cards: number[];
         private _winCardsIndexes: number[];
+        private _lastBet : number;
 
         constructor(facade: Main, balance: number) {
             this._cards = [];
@@ -24,6 +26,7 @@ namespace server {
             this._balance = balance;
             this._facade = facade;
             this._state = "Init";
+            this.setPrices();
             this._facade.on(this._requestDeal, this.requestDeal, this);
             this._facade.on(this._requestDraw, this.requestDraw, this);
             this._facade.on(this._requestCollect, this.requestCollect, this);
@@ -32,6 +35,7 @@ namespace server {
 
         private requestDeal(request: { bet: number }) {
             if (this._state == "Deal") {
+                this._lastBet = request.bet;
                 if (this._balance >= request.bet) {
                     this.setRandomCards([0, 1, 2, 3, 4]);
                     this._balance -= request.bet;
@@ -50,43 +54,65 @@ namespace server {
             }
         }
 
+        private setPrices(): void {
+            this._prices.set("one pair of jacks or better", 1);
+            this._prices.set("two pair", 2);
+            this._prices.set("three of a kind", 3);
+            this._prices.set("straight", 4);
+            this._prices.set("flush", 5);
+            this._prices.set("full house", 9);
+            this._prices.set("four of a kind", 25);
+            this._prices.set("straight flush", 50);
+            this._prices.set("royal flush", 250);
+        }
+
         private requestDraw(indexes: number[]) {
             if (this._state == "Draw") {
-                this.setRandomCards(indexes);
+                // this.setRandomCards(indexes);
+                this.setSelectedCards([8,9,10,11,20]);
+                this._state = "Collect";
                 this._facade.data = {
-                    state: this._state,
+                    state: "Draw",
                     cards: this._cards,
                 };
-                this._state = "Collect";
             } else {
                 console.log("You cannot draw if your state is not Draw");
             }
             console.log("SERVER: Draw was successfull.");
-          
         }
 
         private requestCollect() {
             if (this._state == "Collect") {
-                const winAmount = this.getWinAmount();
+                const winAmount = this.getPrice();
                 this._balance += winAmount;
                 this._facade.data = {
                     state: this._state,
                     balance: this._balance,
+                    winAmount: winAmount
                 };
             } else {
                 console.error("To Collect You must be in Collect state. Your state now is " + this._state);
             }
-            console.log("Collecting ended successfully");
+            console.log("Collecting started successfully");
             this._state = "Deal";
         }
 
-        private getWinAmount(): number {
+        private getPrice(): number {
             if (CardsUtils.hasWin(this._cards)) {
-                return 0;
-            } else {
-                return 0;
+                const combination: combination = CardsUtils.getCombination(this._cards);
+                return this._prices.get(combination) * this._lastBet;
             }
+            return 0;
         }
+
+        private setSelectedCards(indexes: number[]): void {
+                this._cards[0] = indexes[0];
+                this._cards[1] = indexes[1];
+                this._cards[2] = indexes[2];
+                this._cards[3] = indexes[3];
+                this._cards[4] = indexes[4];
+        }
+
 
         private setRandomCards(indexes: number[]): void {
             for (const index of indexes) {

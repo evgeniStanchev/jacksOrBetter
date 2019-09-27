@@ -1,6 +1,6 @@
 namespace server {
     export type combination =
-        | "one pair"
+        | "one pair of jacks or better"
         | "two pair"
         | "three of a kind"
         | "straight"

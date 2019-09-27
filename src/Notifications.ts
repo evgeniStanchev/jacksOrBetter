@@ -9,8 +9,8 @@ namespace poker {
         static PLAYER_LOST = "player lost";
         static DEAL_SUCCESSFUL = "dealSuccess";
         static DRAW_SUCCESSFUL = "drawSuccess";
+        static COLLECTING_SUCCESSFUL = "collectingSuccess";
         static CURRENCY_CHANGED = "currencyChanged";
-        static SPIN_ENDED = "current spin ended";
         static BALANCE_INIT = "balance was initialized";
     }
 }

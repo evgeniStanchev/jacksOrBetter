@@ -33,7 +33,7 @@ namespace controllers {
         }
 
         public getInterests(): string[] {
-            return [Notification.DEAL_SUCCESSFUL, Notification.SPIN_ENDED];
+            return [Notification.DEAL_SUCCESSFUL, Notification.COLLECTING, Notification.COLLECTING_SUCCESSFUL];
         }
 
         public handleNotification(notification: Pluck.Notification): void {
@@ -44,7 +44,12 @@ namespace controllers {
                     // this._view.
                     break;
                 }
-                case Notification.SPIN_ENDED: {
+                case Notification.COLLECTING: {
+                    this._currentAction = "collect clicked";
+                    this.updateActionLabel("Collect");
+                    break;
+                }
+                case Notification.COLLECTING_SUCCESSFUL: {
                     this._currentAction = "deal clicked";
                     this.updateActionLabel("Deal");
                     break;

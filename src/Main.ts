@@ -22,7 +22,7 @@ namespace poker {
             this._res.on(Notification.RESOURCES_LOADED, this.onResourcesLoaded, this);
         }
 
-        set data(val: { state?: state; balance?: number; cards?: number[]; winCardsIndexes?: number[] }) {
+        set data(val: { state?: state; balance?: number; cards?: number[]; winCardsIndexes?: number[]; winAmount ?: number }) {
             this._rootController.data = val;
         }
 

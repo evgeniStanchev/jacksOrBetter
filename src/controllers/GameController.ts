@@ -4,6 +4,7 @@
 ///<reference path="./CardsController.ts"/>
 ///<reference path="./ButtonsController.ts"/>
 ///<reference path="./BalanceController.ts"/>
+///<reference path="./PriceBoardController.ts"/>
 ///<reference path="./WinController.ts"/>
 ///<reference path="./GambleButtonController.ts"/>
 ///<reference path="./InfoController.ts"/>
@@ -22,7 +23,7 @@ namespace controllers {
     import CardsController = controllers.CardsController;
     import ButtonsController = controllers.ButtonsController;
     import BalanceController = controllers.BalanceController;
-
+    import PriceBoardController = controllers.PriceBoardController;
     export class GameController extends Pluck.ViewController {
         public static readonly WIDTH = 1280;
         public static readonly HEIGHT = 720;
@@ -33,6 +34,7 @@ namespace controllers {
         private _balanceController: BalanceController;
         private _winController: WinController;
         private _infoController: InfoController;
+        private _priceBoardController: PriceBoardController;
         private _gambleButtonController: GambleButtonController;
 
         constructor(facade: Main) {
@@ -41,7 +43,7 @@ namespace controllers {
             this.init();
         }
 
-        set data(val: { state?: state; balance?: number; cards?: number[]; winCardsIndexes?: number[] }) {
+        set data(val: { state?: state; balance?: number; cards?: number[]; winCardsIndexes?: number[]; winAmount?: number }) {
             this.mModel.data = val;
         }
 
@@ -74,7 +76,7 @@ namespace controllers {
             this.addChildViewController(this._cardsController);
             this._buttonsController = new ButtonsController();
             this.addChildViewController(this._buttonsController);
-            this._balanceController = new BalanceController(this.mModel);
+            this._balanceController = new BalanceController();
             this.addChildViewController(this._balanceController);
             this._winController = new WinController();
             this.addChildViewController(this._winController);
@@ -82,6 +84,8 @@ namespace controllers {
             this.addChildViewController(this._gambleButtonController);
             this._infoController = new InfoController();
             this.addChildViewController(this._infoController);
+            this._priceBoardController = new PriceBoardController();
+            this.addChildViewController(this._priceBoardController);
         }
     }
 }
