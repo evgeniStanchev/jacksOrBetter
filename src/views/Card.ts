@@ -52,10 +52,9 @@ namespace views {
             this._heldLabel = PIXI.Sprite.from("heldLabel");
             this._heldLabel.x = (this._faceTexture.width - this._heldLabel.width)/2 + 5;
             this._heldLabel.y = 5;
-            //TODO this label must be at the bottom of the card
             this._winLabel = PIXI.Sprite.from("winLabel");
             this._winLabel.x = (this._faceTexture.width - this._winLabel.width)/2 + 5;
-            this._winLabel.y = 5;
+            this._winLabel.y = (this._faceTexture.height - this._winLabel.height) - 10;
             this._isHeld = false;
         }
 

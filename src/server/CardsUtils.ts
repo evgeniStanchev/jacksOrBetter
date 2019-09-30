@@ -80,11 +80,20 @@ namespace server {
     private static spliceOneExclusiveIndex(card: number[]): number[] {
       const ranks = this.getRanks(card);
       const winIndexes = [0, 1, 2, 3, 4];
-      let exclusiveCard = 0;
-      for (const currentCard of ranks) {
-        exclusiveCard ^= currentCard;
+      let exclusiveRank = 0;
+      let exclusiveCard;
+      for (const currentRank of ranks) {
+        exclusiveRank ^= currentRank;
       }
+      for(const currentCard of card){
+        if(this.getRank(currentCard)==exclusiveRank){
+          exclusiveCard = currentCard;
+        }
+      }
+      console.log("card indexof " + card.indexOf(exclusiveCard));
+
       winIndexes.splice(card.indexOf(exclusiveCard), 1);
+      console.log("win indexes: " + winIndexes);
       return winIndexes;
     }
 

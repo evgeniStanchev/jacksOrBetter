@@ -72,8 +72,7 @@ namespace server {
     private requestDraw(indexes: number[]) {
       if (this._state == "Draw") {
         // this.setRandomCards(indexes);
-        //TODO this combination doesnt work 
-        this.setSelectedCards([48, 16, 47, 29, 22]);
+        this.setSelectedCards([0, 13, 47, 26, 39]);
         this._state = "Collect";
         this._facade.data = {
           state: "Draw",

@@ -12,6 +12,7 @@ namespace model {
             PIXI.loader
                 .add("background", "./../../bin/assets/background.png")
                 .add("sound", "./assets/sound.png")
+                .add("options", "./assets/options.png")
                 .add("cleanCard", "./assets/mainCards/card_clean.png")
                 .add("cardBackBlack", "./assets/mainCards/cardBackBlack.png")
                 .add("cardBackRed", "./assets/mainCards/cardBackRed.png")

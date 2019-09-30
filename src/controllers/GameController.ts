@@ -6,6 +6,7 @@
 ///<reference path="./BalanceController.ts"/>
 ///<reference path="./PriceBoardController.ts"/>
 ///<reference path="./WinController.ts"/>
+///<reference path="./OptionsController.ts"/>
 ///<reference path="./GambleButtonController.ts"/>
 ///<reference path="./InfoController.ts"/>
 ///<reference path="../Main.ts"/>
@@ -17,6 +18,7 @@ namespace controllers {
     import Notifications = poker.Notifications;
     import GameModel = model.GameModel;
     import WinController = controllers.WinController;
+    import OptionsController = controllers.OptionsController;
     import InfoController = controllers.InfoController;
     import Main = poker.Main;
     import state = poker.state;
@@ -38,6 +40,7 @@ namespace controllers {
         private _infoController: InfoController;
         private _priceBoardController: PriceBoardController;
         private _gambleButtonController: GambleButtonController;
+        private _optionsController: OptionsController;
 
         constructor(facade: Main) {
             super(new GameView(), new GameModel());
@@ -45,7 +48,14 @@ namespace controllers {
             this.init();
         }
 
-        set data(val: { state?: state; balance?: number; cards?: number[]; winCardsIndexes?: number[]; winAmount?: number ; lastWinCombination ?: combination;}) {
+        set data(val: {
+            state?: state;
+            balance?: number;
+            cards?: number[];
+            winCardsIndexes?: number[];
+            winAmount?: number;
+            lastWinCombination?: combination;
+        }) {
             this.mModel.data = val;
         }
 
@@ -88,6 +98,8 @@ namespace controllers {
             this.addChildViewController(this._infoController);
             this._priceBoardController = new PriceBoardController();
             this.addChildViewController(this._priceBoardController);
+            this._optionsController = new OptionsController();
+            this.addChildViewController(this._optionsController);
         }
     }
 }
