@@ -10,6 +10,7 @@
 ///<reference path="./InfoController.ts"/>
 ///<reference path="../Main.ts"/>
 ///<reference path="../types/state.ts"/>
+///<reference path="../types/combination.ts"/>
 
 namespace controllers {
     import GameView = views.GameView;
@@ -24,6 +25,7 @@ namespace controllers {
     import ButtonsController = controllers.ButtonsController;
     import BalanceController = controllers.BalanceController;
     import PriceBoardController = controllers.PriceBoardController;
+    import combination = poker.combination;
     export class GameController extends Pluck.ViewController {
         public static readonly WIDTH = 1280;
         public static readonly HEIGHT = 720;
@@ -43,7 +45,7 @@ namespace controllers {
             this.init();
         }
 
-        set data(val: { state?: state; balance?: number; cards?: number[]; winCardsIndexes?: number[]; winAmount?: number }) {
+        set data(val: { state?: state; balance?: number; cards?: number[]; winCardsIndexes?: number[]; winAmount?: number ; lastWinCombination ?: combination;}) {
             this.mModel.data = val;
         }
 

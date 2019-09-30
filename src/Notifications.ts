@@ -5,6 +5,8 @@ namespace poker {
         static BUTTON_CLICK_DRAW = "draw button clicked";
         static BUTTON_CLICK_DEAL = "deal button clicked";
         static BUTTON_CLICK_COLLECT = "collect button clicked";
+        static CARDS_REVEAL_STARTED = "cards reveal is started";
+        static CARDS_REVEAL_ENDED = "cards reveal just ended";
         static PLAYER_WON = "player won";
         static PLAYER_LOST = "player lost";
         static DEAL_SUCCESSFUL = "dealSuccess";

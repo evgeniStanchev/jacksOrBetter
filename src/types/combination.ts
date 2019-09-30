@@ -1,4 +1,4 @@
-namespace server {
+namespace poker {
     export type combination =
         | "one pair of jacks or better"
         | "two pair"
