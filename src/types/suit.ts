@@ -1,3 +1,3 @@
 namespace poker {
-    export type suit = "C" | "D" | "H" | "S";
+    export type suit = "Clubs" | "Diamonds" | "Hearts" | "Spades";
 }

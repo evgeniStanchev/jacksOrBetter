@@ -27,7 +27,6 @@ namespace views {
             super();
             this.init();
             this.texture = this._backTexture;
-            this.on("pointerdown", this.onClick);
         }
 
         public setSuitAndRank(rank: Rank, suit: Suit) {
@@ -44,8 +43,6 @@ namespace views {
             return this._suit;
         }
 
-
-
         private init() {
             this._backTexture = PIXI.Texture.from("cardBackBlack");
             this._faceTexture = PIXI.Texture.from("cleanCard");
@@ -60,7 +57,7 @@ namespace views {
 
         public addSuitAndRank(): void {
             this._suitLabel = this.getSuitSprite(this._suit);
-            if (this._suit == "D" || this._suit == "H") {
+            if (this._suit == "Diamonds" || this._suit == "Hearts") {
                 this._rankLabel = new PIXI.Text(this._rank, {
                     fontSize: this._suitLabelSize,
                     fontWeight: "bolder",
@@ -77,14 +74,6 @@ namespace views {
             this._rankLabel.y = 3;
 
             this.addSpecificSprite();
-        }
-        
-        private onClick():void{
-            if(!this.isHeld){
-            this.hold();
-        }else{
-            this.release();
-        }
         }
 
         private addSpecificSprite(): void {
@@ -138,6 +127,18 @@ namespace views {
             this.addChild(this._heldLabel);
         }
 
+        public mark():void{
+            TweenMax.to(this, 0, {
+                alpha: 0.5,
+            });
+        }
+
+        public unmark():void{
+            TweenMax.to(this, 0, {
+                alpha: 1,
+            });
+        }
+
         public win(): void {
             this.addChild(this._winLabel);
         }
@@ -149,16 +150,16 @@ namespace views {
 
         private getSuitSprite(suit: Suit): PIXI.Sprite {
             switch (suit) {
-                case "C": {
+                case "Clubs": {
                     return PIXI.Sprite.from("clubs");
                 }
-                case "D": {
+                case "Diamonds": {
                     return PIXI.Sprite.from("diamonds");
                 }
-                case "H": {
+                case "Hearts": {
                     return PIXI.Sprite.from("hearts");
                 }
-                case "S": {
+                case "Spades": {
                     return PIXI.Sprite.from("spades");
                 }
             }

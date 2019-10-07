@@ -62,17 +62,6 @@ namespace views {
       }
     }
 
-    // public changeLastWinSequentially(lastWin: number): void {
-    //     if (lastWin != null && lastWin != 0) {
-    //       const lastWinString = lastWin.toString;
-    //       TweenMax.to(this._lastWin, 3, {
-    //         text: lastWin.toString()
-    //       })
-    //     } else {
-    //       this._tl.call(this.stopChangingLastWin, null, this);
-    //     }
-    //   }
-
     public buttonCollectClicked(): void {
       this.stopChangingLastWin();
     }
