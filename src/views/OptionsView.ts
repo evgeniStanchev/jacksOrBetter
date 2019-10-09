@@ -8,6 +8,7 @@ namespace views {
         private readonly _optionsPanel: OptionsPanel;
         private readonly _delay = 1;
         private _isOpen: boolean;
+        private _cards: Card[];
         // private readonly _radius = 16;
 
         constructor() {
@@ -26,6 +27,10 @@ namespace views {
             if (this._isOpen) {
                 this._isOpen = false;
                 console.log("CLOSING");
+                if (this._optionsPanel.isOptionUsed) {
+                    this._cards = this._optionsPanel.cards;
+                    this.sendCardsToServer();
+                }
                 TweenMax.to(this, this._delay, {
                     x: 0,
                     yoyo: true,
@@ -39,5 +44,7 @@ namespace views {
                 });
             }
         }
+        //TODO
+        private sendCardsToServer(): void {}
     }
 }
