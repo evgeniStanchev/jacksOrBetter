@@ -26,7 +26,6 @@ namespace views {
         private moveBoard(): void {
             if (this._isOpen) {
                 this._isOpen = false;
-                console.log("CLOSING");
                 if (this._optionsPanel.isOptionUsed) {
                     this._cards = this._optionsPanel.cards;
                     this.sendCardsToServer();
@@ -37,7 +36,6 @@ namespace views {
                 });
             } else {
                 this._isOpen = true;
-                console.log("OPENING");
                 TweenMax.to(this, this._delay, {
                     x: 980,
                     yoyo: true,
@@ -45,6 +43,8 @@ namespace views {
             }
         }
         //TODO
-        private sendCardsToServer(): void {}
+        private sendCardsToServer(): void {
+            
+        }
     }
 }

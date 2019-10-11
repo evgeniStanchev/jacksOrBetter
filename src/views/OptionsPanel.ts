@@ -47,6 +47,10 @@ namespace views {
             this.createMenu();
             this.drawFigures();
             this.on("pointerdown", this.onClick, this);
+            this._optionsMenuClubs.on(Message.optionSelected, this.changeSelectedCard, this);
+            this._optionsMenuDiamonds.on(Message.optionSelected, this.changeSelectedCard, this);
+            this._optionsMenuHearts.on(Message.optionSelected, this.changeSelectedCard, this);
+            this._optionsMenuSpades.on(Message.optionSelected, this.changeSelectedCard, this);
         }
         
         public get cards() : Card[] {
@@ -56,6 +60,10 @@ namespace views {
         
         public get isOptionUsed() : boolean {
             return this._isOptionUsed;
+        }
+
+        private changeSelectedCard():void{
+            
         }
         
 

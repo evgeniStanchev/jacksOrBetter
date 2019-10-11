@@ -47,11 +47,11 @@ namespace views {
             this._backTexture = PIXI.Texture.from("cardBackBlack");
             this._faceTexture = PIXI.Texture.from("cleanCard");
             this._heldLabel = PIXI.Sprite.from("heldLabel");
-            this._heldLabel.x = (this._faceTexture.width - this._heldLabel.width)/2 + 5;
+            this._heldLabel.x = (this._faceTexture.width - this._heldLabel.width) / 2 + 5;
             this._heldLabel.y = 5;
             this._winLabel = PIXI.Sprite.from("winLabel");
-            this._winLabel.x = (this._faceTexture.width - this._winLabel.width)/2 + 5;
-            this._winLabel.y = (this._faceTexture.height - this._winLabel.height) - 10;
+            this._winLabel.x = (this._faceTexture.width - this._winLabel.width) / 2 + 5;
+            this._winLabel.y = this._faceTexture.height - this._winLabel.height - 10;
             this._isHeld = false;
         }
 
@@ -115,6 +115,50 @@ namespace views {
                 }
             }
         }
+        //TODO Check if this works
+        public getIndex(rank: Rank, suit: Suit): number {
+            let index = 0;
+            index += this.getRankValue(rank);
+            index += this.getSuitValue(suit);
+            return index;
+        }
+
+        private getSuitValue(suit: Suit): number {
+            switch (suit) {
+                case "Clubs": {
+                    return 0;
+                }
+                case "Diamonds": {
+                    return 12;
+                }
+
+                case "Hearts": {
+                    return 24;
+                }
+                case "Spades": {
+                    return 36;
+                }
+            }
+        }
+
+        private getRankValue(rank: Rank): number {
+            switch (rank) {
+                case "A":
+                    return 0;
+                case "K": {
+                    return 12;
+                }
+                case "Q": {
+                    return 11;
+                }
+                case "J": {
+                    return 10;
+                }
+                default: {
+                    return parseInt(rank) + 1;
+                }
+            }
+        }
 
         public hide(): void {
             this._specificSprite = null;
@@ -127,13 +171,13 @@ namespace views {
             this.addChild(this._heldLabel);
         }
 
-        public mark():void{
+        public mark(): void {
             TweenMax.to(this, 0, {
                 alpha: 0.5,
             });
         }
 
-        public unmark():void{
+        public unmark(): void {
             TweenMax.to(this, 0, {
                 alpha: 1,
             });

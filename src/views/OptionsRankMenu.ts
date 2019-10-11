@@ -105,7 +105,7 @@ namespace views {
             const option = event.currentTarget as PIXI.Graphics;
             //we use ranks' indexes to create the text of the option, so the indexes are the same
             const rank: rank = this._rank[this._options.indexOf(option)];
-            this.emit(Message.optionSelected, [rank, this._suit]);
+            this.emit(Message.optionSelected, [this._suit, rank]);
         }
 
         private onMouseOver(event: PIXI.interaction.InteractionEvent): void {
