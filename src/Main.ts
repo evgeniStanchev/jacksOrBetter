@@ -16,7 +16,7 @@ namespace poker {
     private readonly _requestRestart = "requestRestart";
 
     private _rootController: GameController;
-
+//1
     constructor() {
       super();
       this._res = new Resources();
